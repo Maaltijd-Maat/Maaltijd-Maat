@@ -1,0 +1,32 @@
+<h1 nz-typography>New Dish</h1>
+
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="newDish" (ngSubmit)="submitForm()">
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="name">Dish name</nz-form-label>
+    <nz-form-control nzErrorTip="Please input a name for the dish!">
+      <nz-input-group>
+        <input nz-input formControlName="name"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired
+                   nzFor="defaultAmountOfPeople">Default amount of people
+    </nz-form-label>
+    <nz-form-control nzErrorTip="Please input an amount of people">
+      <nz-input-group>
+        <nz-input-number formControlName="defaultAmountOfPeople" [nzMin]="1" [nzMax]="10"
+                         [nzStep]="1"></nz-input-number>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary">Add Dish</button>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
