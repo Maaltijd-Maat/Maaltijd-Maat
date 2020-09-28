@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DishService} from "../../services/dish.service";
 
 @Component({
   selector: 'app-add-dish',
@@ -10,7 +11,7 @@ export class AddDishComponent implements OnInit {
 
   newDish!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private dishService: DishService) {
   }
 
   ngOnInit(): void {
