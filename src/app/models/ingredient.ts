@@ -1,4 +1,4 @@
-class Ingredient {
+export class Ingredient {
   private _quantity: number;
 
   constructor(quantity: number) {

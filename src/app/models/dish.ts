@@ -1,4 +1,7 @@
-class Dish {
+import { User } from './user';
+import { Ingredient } from './ingredient';
+
+export class Dish {
   private _author: User;
   private _name: string;
 
