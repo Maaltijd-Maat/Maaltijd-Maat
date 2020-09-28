@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -25,6 +26,7 @@ import {
   NzCheckboxModule
 } from "ng-zorro-antd";
 import {LoginComponent} from "./views/login/login.component";
+//import { NzFormModule, NzInputModule, NzButtonModule, NzInputNumberModule } from "ng-zorro-antd";
 
 registerLocaleData(nl);
 
@@ -38,6 +40,7 @@ registerLocaleData(nl);
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
@@ -50,10 +53,12 @@ registerLocaleData(nl);
     ReactiveFormsModule,
     NzButtonModule,
     NzInputNumberModule,
+    BrowserAnimationsModule,
     NzTabsModule,
     NzCheckboxModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: nl_NL }],
+  providers: [{provide: NZ_I18N, useValue: nl_NL}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

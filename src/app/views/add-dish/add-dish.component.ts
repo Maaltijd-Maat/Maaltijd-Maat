@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DishService } from '../../services/dish.service';
+import { Dish } from '../../models/dish';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-add-dish',
@@ -7,24 +10,31 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./add-dish.component.scss']
 })
 export class AddDishComponent implements OnInit {
+  formGroup!: FormGroup;
 
-  newDish!: FormGroup;
-
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private dishService: DishService) {
   }
 
   ngOnInit(): void {
-    this.newDish = this.fb.group({
+    this.formGroup = this.fb.group({
       name: [null, [Validators.required]],
-      defaultAmountOfPeople: [null, [Validators.required]],
-      remember: [true]
+      amountOfPeople: [4, [Validators.required]],
+      instructions: [null]
     });
   }
 
   submitForm(): void {
-    for (const i in this.newDish.controls) {
-      this.newDish.controls[i].markAsDirty();
-      this.newDish.controls[i].updateValueAndValidity();
+    for (const i in this.formGroup.controls) {
+      this.formGroup.controls[i].markAsDirty();
+      this.formGroup.controls[i].updateValueAndValidity();
+    }
+
+    if (this.formGroup.valid) {
+      const dish = new Dish(this.formGroup.controls['name'].value, new User(),
+        this.formGroup.controls['instructions'].value, [],
+        this.formGroup.controls['amountOfPeople'].value);
+
+      this.dishService.postDish(dish);
     }
   }
 
