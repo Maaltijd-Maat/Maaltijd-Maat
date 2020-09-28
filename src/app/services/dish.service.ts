@@ -4,12 +4,14 @@ import { IDishService } from './IDishService';
 import { Dish } from '../models/dish';
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DishService implements IDishService {
   private readonly endpoint: string = '/dish';
-  private readonly url: string = this.endpoint;
+  private readonly url: string = environment.apiUrl + this.endpoint;
 
   constructor(private http: HttpClient) {
   }
@@ -29,6 +31,7 @@ export class DishService implements IDishService {
   }
 
   postDish(dish: Dish): void {
+    console.log(dish);
     // TODO
   }
 

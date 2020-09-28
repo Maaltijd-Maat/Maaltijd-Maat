@@ -2,19 +2,19 @@ import { User } from './user';
 import { Ingredient } from './ingredient';
 
 export class Dish {
-  private _author: User;
   private _name: string;
+  private _author: User;
 
   private _amountOfPeople: number;
   private _ingredients: Ingredient[];
-  private _steps: string;
+  private _instructions: string;
 
   constructor(name: string, author: User,
-              steps: string, ingredients: Ingredient[], amountOfPeople: number) {
+              instructions: string, ingredients: Ingredient[], amountOfPeople: number) {
     this._name = name;
     this._author = author;
 
-    this._steps = steps;
+    this._instructions = instructions;
     this._ingredients = ingredients;
     this._amountOfPeople = amountOfPeople;
   }
@@ -51,11 +51,11 @@ export class Dish {
     this._ingredients = value;
   }
 
-  get steps(): string {
-    return this._steps;
+  get instructions(): string {
+    return this._instructions;
   }
 
-  set steps(value: string) {
-    this._steps = value;
+  set instructions(value: string) {
+    this._instructions = value;
   }
 }
