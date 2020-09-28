@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DishService } from '../../services/dish/dish.service';
+import { DishService } from '../../services/dish.service';
 import { Dish } from '../../models/dish';
 import { User } from '../../models/user';
 
@@ -30,11 +30,10 @@ export class AddDishComponent implements OnInit {
     }
 
     if (this.formGroup.valid) {
-
       //TODO user ophalen en deze inserten in de dish
       const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false);
-
-      const dish = new Dish(this.formGroup.controls['name'].value, user,
+      const dish = new Dish(this.formGroup.controls['name'].value,
+        user,
         this.formGroup.controls['instructions'].value, [],
         this.formGroup.controls['amountOfPeople'].value);
 
