@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -15,8 +15,8 @@ import { nl_NL } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
 import { AddDishComponent } from './views/add-dish/add-dish.component';
-import {RegisterComponent } from './views/register/register.component';
-import {MenuComponent} from "./views/menu/menu.component";
+import { RegisterComponent } from './views/register/register.component';
+import { MenuComponent } from './views/menu/menu.component';
 import {
   NzFormModule,
   NzInputModule,
@@ -24,9 +24,8 @@ import {
   NzInputNumberModule,
   NzTabsModule,
   NzCheckboxModule
-} from "ng-zorro-antd";
-import {LoginComponent} from "./views/login/login.component";
-//import { NzFormModule, NzInputModule, NzButtonModule, NzInputNumberModule } from "ng-zorro-antd";
+} from 'ng-zorro-antd';
+import { LoginComponent } from './views/login/login.component';
 
 registerLocaleData(nl);
 
