@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddDishComponent } from "./views/add-dish/add-dish.component";
+import {AddDishComponent} from "./views/add-dish/add-dish.component";
+import {RegisterComponent} from "./views/register/register.component";
+import {LoginComponent} from "./views/login/login.component";
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/welcome'},
-  {path: 'add-dish', component: AddDishComponent},
-  {path: 'welcome', loadChildren: () => import('./views/welcome/welcome.module').then(m => m.WelcomeModule)},
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  { path: 'add-dish', component: AddDishComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'welcome', loadChildren: () => import('./views/welcome/welcome.module').then(m => m.WelcomeModule) }
 ];
 
 @NgModule({
