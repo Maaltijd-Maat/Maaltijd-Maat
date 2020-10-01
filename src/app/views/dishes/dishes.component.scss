@@ -3,6 +3,10 @@
   margin-bottom: 12px;
 }
 
-.toolbar-title {
-  margin-left: 16px;
+.toolbar  {
+  padding: 16px 16px 4px 16px;
+}
+
+::ng-deep .ant-table-pagination.ant-pagination {
+  margin-right: 16px;
 }

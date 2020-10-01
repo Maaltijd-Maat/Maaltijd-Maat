@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dish } from '../../models/dish';
+import { IDish } from '../../models/dish';
 import { DishService } from '../../services/dish.service';
 
 @Component({
@@ -8,13 +8,30 @@ import { DishService } from '../../services/dish.service';
   styleUrls: ['./dishes.component.scss']
 })
 export class DishesComponent implements OnInit {
+  checked = false;
+  dishes: IDish[] = [];
 
-  dishes: Dish[] = []
+  currentPageDishes: IDish[] = [];
+  checkedIds = new Set<string>();
 
-  constructor(private dishService: DishService) { }
+  isLoading: boolean = false;
 
-  ngOnInit(): void {
-
+  constructor(private dishService: DishService) {
   }
 
+  ngOnInit(): void {
+    this.getDishes();
+  }
+
+  refreshDishes() {
+    this.getDishes();
+  }
+
+  private getDishes() {
+    this.isLoading = true;
+    this.dishService.getDishes().subscribe((data: IDish[]) => {
+      this.dishes = data;
+      this.isLoading = false;
+    });
+  }
 }

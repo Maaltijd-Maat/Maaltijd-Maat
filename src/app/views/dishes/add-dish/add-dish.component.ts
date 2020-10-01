@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DishService } from '../../services/dish.service';
-import { Dish } from '../../models/dish';
-import { User } from '../../models/user';
+import { DishService } from '../../../services/dish.service';
+import { Dish } from '../../../models/dish';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-add-dish',

@@ -2,8 +2,8 @@
 </nz-page-header>
 
 <div class="inner-content">
-  <div nz-row>
-    <div class="toolbar-title" nz-col nzFlex="auto">
+  <div class="toolbar" nz-row>
+    <div nz-col nzFlex="auto">
       <h3 nz-typography>Dishes</h3>
     </div>
     <div nz-col>
@@ -11,21 +11,22 @@
       <button nz-button disabled nzDanger><i nz-icon nzType="delete"></i>Delete Dish</button>
       <nz-divider nzType="vertical"></nz-divider>
       <nz-button-group>
-        <button nz-button><i nz-icon nzType="reload"></i></button>
+        <button nz-button (click)="refreshDishes()"><i nz-icon nzType="reload"></i></button>
       </nz-button-group>
     </div>
   </div>
 
-  <nz-table #headerTable [nzData]="dishes" [nzPageSize]="50" [nzScroll]="{ y: '240px' }">
+  <nz-table #headerTable [nzData]="dishes" [nzLoading]="isLoading" [nzPageSize]="10">
     <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
+      <th>Author</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of headerTable.data">
-      <td>{{ data.name }}</td>
+    <tr *ngFor="let dish of headerTable.data">
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.author }}</td>
     </tr>
     </tbody>
   </nz-table>
