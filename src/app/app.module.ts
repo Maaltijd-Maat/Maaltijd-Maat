@@ -15,17 +15,10 @@ import { nl_NL } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
 import { AddDishComponent } from './views/add-dish/add-dish.component';
-import { RegisterComponent } from './views/register/register.component';
 import { MenuComponent } from './views/menu/menu.component';
 import {
-  NzFormModule,
-  NzInputModule,
-  NzButtonModule,
-  NzInputNumberModule,
-  NzTabsModule,
-  NzCheckboxModule
+  NgZorroAntdModule
 } from 'ng-zorro-antd';
-import { LoginComponent } from './views/login/login.component';
 
 registerLocaleData(nl);
 
@@ -33,9 +26,7 @@ registerLocaleData(nl);
   declarations: [
     AppComponent,
     AddDishComponent,
-    RegisterComponent,
-    MenuComponent,
-    LoginComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -47,16 +38,11 @@ registerLocaleData(nl);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzFormModule,
-    NzInputModule,
     ReactiveFormsModule,
-    NzButtonModule,
-    NzInputNumberModule,
     BrowserAnimationsModule,
-    NzTabsModule,
-    NzCheckboxModule
+    NgZorroAntdModule
   ],
-  providers: [{provide: NZ_I18N, useValue: nl_NL}],
+  providers: [{ provide: NZ_I18N, useValue: nl_NL }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
