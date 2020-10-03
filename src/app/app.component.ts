@@ -8,6 +8,7 @@ import {NavigationStart, Router} from "@angular/router";
 })
 export class AppComponent {
   showMenu = false;
+  title: undefined;
 
   constructor(router:Router) {
     router.events.forEach((event) => {

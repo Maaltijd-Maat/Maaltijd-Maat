@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Dish } from '../models/dish';
+import { Dish } from '../../models/dish';
 
 export interface IDishService {
 

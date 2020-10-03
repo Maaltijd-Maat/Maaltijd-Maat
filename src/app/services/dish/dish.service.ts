@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDishService } from './IDishService';
-import { Dish } from '../models/dish';
+import { Dish } from '../../models/dish';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
