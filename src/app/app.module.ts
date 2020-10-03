@@ -14,12 +14,14 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { nl_NL } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
+import { MenuComponent } from './views/menu/menu.component';
 
 registerLocaleData(nl);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

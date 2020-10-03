@@ -2,14 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { AddDishComponent } from './add-dish/add-dish.component';
+
 import { DishesRoutingModule } from './dishes-routing.module';
-import { DishesComponent } from './dishes.component';
+import { DishesComponent } from './pages/dishes/dishes.component';
+import { NewDishComponent } from './pages/new-dish/new-dish.component';
+
 import { DishService } from '../../services/dish.service';
 
 @NgModule({
-  declarations: [DishesComponent, AddDishComponent],
-  exports: [DishesComponent, AddDishComponent],
+  declarations: [DishesComponent, NewDishComponent],
+  exports: [DishesComponent, NewDishComponent],
   imports: [
     DishesRoutingModule,
     CommonModule,

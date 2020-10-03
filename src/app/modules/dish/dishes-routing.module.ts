@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddDishComponent } from './add-dish/add-dish.component';
-import { DishesComponent } from './dishes.component';
+import { NewDishComponent } from './pages/new-dish/new-dish.component';
+import { DishesComponent } from './pages/dishes/dishes.component';
 
 const routes: Routes = [
   { path: '', component: DishesComponent },
-  { path: 'dish-details/:id', component: AddDishComponent }
+  { path: 'new', component: NewDishComponent }
 ];
 
 @NgModule({

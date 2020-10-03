@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IDish } from '../../models/dish';
-import { DishService } from '../../services/dish.service';
+import { IDish } from '../../../../models/dish';
+import { DishService } from '../../../../services/dish.service';
 
 @Component({
   selector: 'app-dishes',
