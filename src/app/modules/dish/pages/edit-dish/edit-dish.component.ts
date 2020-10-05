@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IIngredient } from '@models:/ingredient';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { IDish } from '@models:/dish';
+import { IIngredient } from '@models:/ingredient';
 import { DishService } from '@services/dish/dish.service';
 
 export class EditDish implements IDish {

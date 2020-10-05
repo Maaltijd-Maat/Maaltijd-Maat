@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { IconsProviderModule } from '../../icons-provider.module';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
@@ -12,8 +13,9 @@ import { RegisterComponent } from './register.component';
   imports: [
     CommonModule,
     NgZorroAntdModule,
+    IconsProviderModule,
     ReactiveFormsModule,
-    RegisterRoutingModule
+    RegisterRoutingModule,
   ],
   providers: []
 })

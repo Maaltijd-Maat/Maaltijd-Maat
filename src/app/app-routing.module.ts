@@ -4,9 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
   { path: 'dishes', loadChildren: () => import('./modules/dish/dishes.module').then(m => m.DishesModule)},
-  { path: 'register', loadChildren: () => import('./views/register/register.module').then(m => m.RegisterModule) },
-  { path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule) },
-  { path: 'welcome', loadChildren: () => import('./views/welcome/welcome.module').then(m => m.WelcomeModule) }
+  { path: 'register', loadChildren: () => import('./modules/register/register.module').then(m => m.RegisterModule) },
+  { path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule) },
+  { path: 'welcome', loadChildren: () => import('./modules/welcome/welcome.module').then(m => m.WelcomeModule) }
 ];
 
 @NgModule({

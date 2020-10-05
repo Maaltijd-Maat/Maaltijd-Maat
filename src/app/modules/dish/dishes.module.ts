@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { IconsProviderModule } from '../../icons-provider.module';
 
 import { DishesRoutingModule } from './dishes-routing.module';
 import { DishService } from '@services/dish/dish.service';
@@ -13,10 +14,11 @@ import { NewDishComponent } from './pages/new-dish/new-dish.component';
   declarations: [DishesComponent, NewDishComponent, EditDishComponent],
   exports: [DishesComponent, NewDishComponent, EditDishComponent],
   imports: [
-    DishesRoutingModule,
     CommonModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    IconsProviderModule,
+    ReactiveFormsModule,
+    DishesRoutingModule
   ],
   providers: [DishService]
 })
