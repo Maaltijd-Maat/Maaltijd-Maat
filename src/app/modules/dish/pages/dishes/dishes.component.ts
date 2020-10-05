@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IDish } from '../../../../models/dish';
-import { DishService } from '../../../../services/dish.service';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+
+import { IDish } from '@models:/dish';
+import { DishService } from '@services/dish/dish.service';
 
 @Component({
   selector: 'app-dishes',
@@ -9,12 +12,12 @@ import { DishService } from '../../../../services/dish.service';
 })
 export class DishesComponent implements OnInit {
   checked = false;
-  dishes: IDish[] = [];
+  dishes$?: Observable<IDish[]>;
 
   currentPageDishes: IDish[] = [];
   checkedIds = new Set<string>();
 
-  isLoading: boolean = false;
+  loading: boolean = false;
 
   constructor(private dishService: DishService) {
   }
@@ -23,15 +26,26 @@ export class DishesComponent implements OnInit {
     this.getDishes();
   }
 
-  refreshDishes() {
+  refreshDishes(): void {
     this.getDishes();
   }
 
-  private getDishes() {
-    this.isLoading = true;
-    this.dishService.getDishes().subscribe((data: IDish[]) => {
-      this.dishes = data;
-      this.isLoading = false;
-    });
+  /**
+   * Private method that retrieves dishes from the API and assigns those to dishes.
+   * Unless there's an error or timeout, then it will show an error message.
+   */
+  private getDishes(): void {
+    this.loading = true;
+    this.dishes$ = this.dishService.getDishes()
+      .pipe(
+        // TODO: Add convenient error handling upon timeout or other errors returned by API.
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(() => this.loading = false),
+      )
+  }
+
+  ionViewWillEnter(){
+    this.ngOnInit();
   }
 }

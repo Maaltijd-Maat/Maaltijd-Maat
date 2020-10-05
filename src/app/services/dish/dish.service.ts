@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDishService } from './IDishService';
+import { IDish } from '@models:/dish';
+import { IDishService } from '@services/dish/IDishService';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { IDish } from '../models/dish'
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,9 @@ export class DishService implements IDishService {
   constructor(private http: HttpClient) {
   }
 
-  deleteDish(id: string): void {
+  deleteDish(id: string): Observable<IDish> {
     const url = `${this.url}/${id}`;
-    this.http.get<IDish>(url);
+    return this.http.delete<IDish>(url);
   }
 
   getDish(id: string): Observable<IDish> {
@@ -36,12 +36,12 @@ export class DishService implements IDishService {
     return this.http.get<IDish[]>(this.url);
   }
 
-  postDish(dish: IDish): void {
-    this.http.post(this.url, dish, this.httpOptions).subscribe();
+  postDish(dish: IDish): Observable<Object> {
+    return this.http.post<IDish>(this.url, dish, this.httpOptions);
   }
 
-  putDish(id: string, dish: IDish): void {
+  putDish(id: string, dish: IDish): Observable<Object> {
     const url = `${this.url}/${id}`;
-    this.http.put(url, dish).subscribe();
+    return this.http.put<IDish>(url, dish, this.httpOptions);
   }
 }

@@ -1,26 +1,27 @@
-import { Ingredient } from './ingredient';
-import { User } from './user';
+import { IIngredient } from '@models:/ingredient';
+import { IUser } from '@models:/user';
 
 export interface IDish {
   readonly id?: string;
+  readonly author?: IUser;
+
   name: string;
-  author: User;
-  ingredients: Ingredient[];
+  amountOfPeople: number;
+  ingredients: IIngredient[];
   instructions: string[];
 }
 
 export class Dish implements IDish {
   readonly id?: string;
+  readonly author: IUser;
 
   name: string;
-  author: User;
-
   amountOfPeople: number;
-  ingredients: Ingredient[];
+  ingredients: IIngredient[];
   instructions: string[];
 
-  constructor(name: string, author: User,
-              instructions: string[], ingredients: Ingredient[], amountOfPeople: number) {
+  constructor(name: string, author: IUser,
+              instructions: string[], ingredients: IIngredient[], amountOfPeople: number) {
     this.name = name;
     this.author = author;
 

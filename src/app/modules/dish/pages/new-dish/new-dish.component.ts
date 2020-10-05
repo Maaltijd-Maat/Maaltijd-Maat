@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DishService } from '../../../services/dish.service';
-import { Dish } from '../../../models/dish';
-import { User } from '../../../models/user';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+import { Dish } from '@models:/dish';
+import { User } from '@models:/user';
+import { DishService } from '@services/dish/dish.service';
 
 @Component({
   selector: 'app-add-dish',
-  templateUrl: './add-dish.component.html',
-  styleUrls: ['./add-dish.component.scss']
+  templateUrl: './new-dish.component.html',
+  styleUrls: ['./new-dish.component.scss']
 })
-export class AddDishComponent implements OnInit {
+export class NewDishComponent implements OnInit {
   formGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private dishService: DishService) {
+  constructor(private fb: FormBuilder, private dishService: DishService,
+              private _location: Location, private message: NzMessageService) {
   }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       name: [null, [Validators.required]],
-      amountOfPeople: [4, [Validators.required]],
-      instructions: [null]
+      amountOfPeople: [4, [Validators.required]]
     });
   }
 
@@ -30,14 +33,22 @@ export class AddDishComponent implements OnInit {
     }
 
     if (this.formGroup.valid) {
-      //TODO user ophalen en deze inserten in de dish
-      const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false);
-      const dish = new Dish(this.formGroup.controls['name'].value,
+      //TODO user id ophalen en deze inserten in de dish
+      const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false, [], "5f7889e3c16f07683bd8a81e");
+      const dish = new Dish(
+        this.formGroup.controls['name'].value,
         user,
-        this.formGroup.controls['instructions'].value, [],
-        this.formGroup.controls['amountOfPeople'].value);
+        [],
+        [],
+        this.formGroup.controls['amountOfPeople'].value
+      );
 
-      this.dishService.postDish(dish);
+      this.dishService.postDish(dish).subscribe(() => {
+        this.message.create('success', `Successfully added ${dish.name}!`)
+        this._location.back();
+      }, error => {
+        // TODO: Add convenient way to present errors at the frontend.
+      });
     }
   }
 

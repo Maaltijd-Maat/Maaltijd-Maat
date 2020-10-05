@@ -9,7 +9,7 @@
 
 <div class="content">
   <nz-card>
-    <form nz-form [nzLayout]="'horizontal'" [formGroup]="formGroup" (ngSubmit)="submitForm()">
+    <form nz-form *ngIf="id" [nzLayout]="'horizontal'" [formGroup]="formGroup" (ngSubmit)="submitForm()">
 
       <nz-form-item>
         <nz-form-label [nzSm]="7" [nzXs]="24" nzRequired nzFor="name">Dish name</nz-form-label>
@@ -35,6 +35,7 @@
       <nz-form-item>
         <nz-form-control [nzSpan]="14" [nzOffset]="7">
           <button nz-button nzType="primary" [disabled]="!formGroup.valid">Add Dish</button>
+          <button nz-button nzDanger>Delete Dish</button>
         </nz-form-control>
       </nz-form-item>
 
