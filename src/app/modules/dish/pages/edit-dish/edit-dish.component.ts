@@ -5,24 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { IDish } from '@models:/dish';
-import { IIngredient } from '@models:/ingredient';
 import { DishService } from '@services/dish/dish.service';
-
-export class EditDish implements IDish {
-  public readonly id: string;
-  public name: string;
-  public amountOfPeople: number;
-  public ingredients: IIngredient[];
-  public instructions: string[];
-
-  constructor(id: string, name: string, amountOfPeople: number, ingredients: IIngredient[], instructions: string[]) {
-    this.id = id;
-    this.name = name;
-    this.amountOfPeople = amountOfPeople;
-    this.ingredients = ingredients;
-    this.instructions = instructions;
-  }
-}
 
 @Component({
   selector: 'app-edit-dish',
@@ -31,7 +14,7 @@ export class EditDish implements IDish {
 })
 export class EditDishComponent implements OnInit {
   formGroup!: FormGroup;
-  dish?: EditDish;
+  dish?: IDish;
 
   public constructor(private fb: FormBuilder, private dishService: DishService,
                      private route: ActivatedRoute, private _location: Location,
@@ -68,7 +51,7 @@ export class EditDishComponent implements OnInit {
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value
       };
 
-      this.dishService.putDish(this.dish!.id, dish).subscribe(() => {
+      this.dishService.putDish(this.dish!.id!, dish).subscribe(() => {
         this.message.create('success', `Successfully updated ${dish.name}!`);
         this._location.back();
       }, error => {
@@ -81,7 +64,7 @@ export class EditDishComponent implements OnInit {
    * Remove retrieved dish from the database.
    */
   public deleteDish(): void {
-    this.dishService.deleteDish(this.dish!.id).subscribe(
+    this.dishService.deleteDish(this.dish!.id!).subscribe(
       () => {
         this.message.create('success', `Successfully deleted ${this.dish!.name}!`);
         this._location.back();
