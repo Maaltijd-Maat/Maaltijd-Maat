@@ -7,25 +7,20 @@ import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { nl_NL } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
-import { AddDishComponent } from './views/add-dish/add-dish.component';
 import { MenuComponent } from './views/menu/menu.component';
-import {
-  NgZorroAntdModule
-} from 'ng-zorro-antd';
 
 registerLocaleData(nl);
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddDishComponent,
     MenuComponent
   ],
   imports: [
@@ -37,12 +32,9 @@ registerLocaleData(nl);
     NzMenuModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    NgZorroAntdModule
+    BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: nl_NL }],
+  providers: [{provide: NZ_I18N, useValue: nl_NL}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

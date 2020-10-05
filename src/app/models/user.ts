@@ -1,5 +1,5 @@
 export interface IUser {
-  readonly UUID?: number;
+  readonly id?: string;
   firstname: string;
   lastname: string;
   email: string;
@@ -10,7 +10,7 @@ export interface IUser {
 }
 
 export class User implements IUser{
-  readonly UUID?: number;
+  readonly id?: string;
   firstname: string;
   lastname: string;
   email: string;
@@ -19,7 +19,8 @@ export class User implements IUser{
   guest: boolean;
   allergenen: string[];
 
-  constructor(firstname: string, lastname: string, email: string, password: string, avatar: string, guest: boolean, allergenen?: string[]) {
+  constructor(firstname: string, lastname: string, email: string, password: string, avatar: string, guest: boolean, allergenen?: string[], id?: string) {
+    this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
