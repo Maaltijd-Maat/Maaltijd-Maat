@@ -31,7 +31,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let dish of headerTable.data">
-        <td>{{ dish['name'] }}</td>
+        <td><a [routerLink]="['./', dish['id']]">{{ dish['name'] }}</a></td>
         <td><nz-avatar nzIcon="user"></nz-avatar></td>
       </tr>
       </tbody>

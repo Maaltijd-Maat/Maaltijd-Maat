@@ -31,24 +31,30 @@ export class EditDish implements IDish {
 })
 export class EditDishComponent implements OnInit {
   formGroup!: FormGroup;
-  id: string = ''
-
   dish?: EditDish;
 
-  constructor(private fb: FormBuilder, private dishService: DishService,
-              private route: ActivatedRoute, private _location: Location,
-              private message: NzMessageService) {
+  public constructor(private fb: FormBuilder, private dishService: DishService,
+                     private route: ActivatedRoute, private _location: Location,
+                     private message: NzMessageService) {
+    // Retrieve dish object from the edit dish resolver
+    this.route.data.subscribe((data) => {
+      this.dish = data.dish;
+    });
+
+    // Fill form group with the dish data
     this.formGroup = this.fb.group({
-      name: [null, [Validators.required]],
-      amountOfPeople: [4, [Validators.required]]
+      name: [this.dish!.name, [Validators.required]],
+      amountOfPeople: [this.dish!.amountOfPeople, [Validators.required]]
     });
   }
 
-  ngOnInit(): void {
-    this.retrieveDish();
+  public ngOnInit(): void {
   }
 
-  submitForm(): void {
+  /**
+   * Submit form as dish to the API.
+   */
+  public updateDish(): void {
     for (const i in this.formGroup.controls) {
       this.formGroup.controls[i].markAsDirty();
       this.formGroup.controls[i].updateValueAndValidity();
@@ -62,7 +68,7 @@ export class EditDishComponent implements OnInit {
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value
       };
 
-      this.dishService.putDish(this.id, dish).subscribe(() => {
+      this.dishService.putDish(this.dish!.id, dish).subscribe(() => {
         this.message.create('success', `Successfully updated ${dish.name}!`);
         this._location.back();
       }, error => {
@@ -71,26 +77,17 @@ export class EditDishComponent implements OnInit {
     }
   }
 
-  private deleteDish(): void {
-    this.dishService.deleteDish(this.id);
-  }
-
-  // TODO: Ben niet heel gelukkig met deze methode, ik ga hem later herzien.
-  private retrieveDish(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id != null) {
-        this.dishService.getDish(id).subscribe(dish => {
-          this.id = dish.id!;
-          this.formGroup.setValue({
-            name: dish.name,
-            amountOfPeople: dish.amountOfPeople
-          });
-        }, error => {
-          // TODO: Add convenient error handling.
-        });
+  /**
+   * Remove retrieved dish from the database.
+   */
+  public deleteDish(): void {
+    this.dishService.deleteDish(this.dish!.id).subscribe(
+      () => {
+        this.message.create('success', `Successfully deleted ${this.dish!.name}!`);
+        this._location.back();
+      }, error => {
+        // TODO: Add convenient way to present errors at the frontend.
       }
-      // TODO: Add convenient error handling.
-    });
+    );
   }
 }
