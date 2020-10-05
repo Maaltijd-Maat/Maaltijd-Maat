@@ -1,4 +1,4 @@
-import {User} from '../../models/user';
+import { IUser } from '@models:/user';
 
 export interface IUserService {
 
@@ -7,7 +7,7 @@ export interface IUserService {
    *
    * @param user - newly create user object.
    */
-  registerUser(user: User): void;
+  registerUser(user: IUser): void;
 
   /**
    * Authenticate the user by credentials.
@@ -15,12 +15,12 @@ export interface IUserService {
    * @param user - user object for the credentials.
    * @return authentication token for further use of the backend calls.
    */
-  authenticateUser(user: User): string;
+  authenticateUser(user: IUser): string;
 
   /**
    * Change the user information by updating.
    *
    * @param user - the user object with changes.
    */
-  updateUser(user: User): void
+  updateUser(user: IUser): void
 }
