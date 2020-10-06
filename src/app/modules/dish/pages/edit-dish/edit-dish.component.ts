@@ -12,7 +12,7 @@ import { DishService } from '@services/dish/dish.service';
   templateUrl: './edit-dish.component.html',
   styleUrls: ['./edit-dish.component.scss']
 })
-export class EditDishComponent implements OnInit {
+export class EditDishComponent {
   formGroup!: FormGroup;
   dish?: IDish;
 
@@ -29,9 +29,6 @@ export class EditDishComponent implements OnInit {
       name: [this.dish!.name, [Validators.required]],
       amountOfPeople: [this.dish!.amountOfPeople, [Validators.required]]
     });
-  }
-
-  public ngOnInit(): void {
   }
 
   /**
