@@ -26,6 +26,9 @@ export class DishesComponent implements OnInit {
     this.getDishes();
   }
 
+  /**
+   * Refresh dishes inside table.
+   */
   refreshDishes(): void {
     this.getDishes();
   }
@@ -43,9 +46,5 @@ export class DishesComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => this.loading = false),
       )
-  }
-
-  ionViewWillEnter(){
-    this.ngOnInit();
   }
 }
