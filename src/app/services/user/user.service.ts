@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { IUserService } from './IUserService';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 import { IUser } from '@models:/user';
 

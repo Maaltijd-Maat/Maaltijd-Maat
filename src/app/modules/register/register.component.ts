@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.registerForm.valid) {
-
       const user = new User(
         this.registerForm.controls['firstname'].value,
         this.registerForm.controls['lastname'].value,
