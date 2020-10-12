@@ -24,6 +24,10 @@ export class RegisterComponent implements OnInit {
     }, { validator: this.comparePasswordInputs });
   }
 
+  /**
+   * Compare the password input fields for differences.
+   * @param registerForm the form controls
+   */
   comparePasswordInputs(registerForm: FormGroup) {
     let password = registerForm.controls['password'].value;
     let confirmPassword = registerForm.controls['confirmPassword'].value;
@@ -37,13 +41,15 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.registerForm.valid) {
+
       const user = new User(
         this.registerForm.controls['firstname'].value,
         this.registerForm.controls['lastname'].value,
         this.registerForm.controls['email'].value,
         this.registerForm.controls['password'].value,
         '',
-        false);
+        false
+        );
 
       //TODO redux...
       this.userService.registerUser(user).then(

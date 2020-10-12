@@ -1,4 +1,6 @@
 import { IUser } from '@models:/user';
+import {Observable} from 'rxjs';
+import {IDish} from '@models:/dish';
 
 export interface IUserService {
 
@@ -15,7 +17,7 @@ export interface IUserService {
    * @param user - user object for the credentials.
    * @return authentication token for further use of the backend calls.
    */
-  authenticateUser(user: IUser): string;
+  authenticateUser(user: IUser): void;
 
   /**
    * Change the user information by updating.

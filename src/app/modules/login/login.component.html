@@ -1,9 +1,15 @@
 <div class="middle">
-<form nz-form [nzLayout]="'horizontal'" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <br>
+  <form nz-form [nzLayout]="'horizontal'" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-head">
     <h1 nz-typography>Login</h1>
     <p>Create new dishes!</p>
   </div>
+  <div class="alert">
+    <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success Tips" nzShowIcon>{{alertMessage}}</nz-alert>
+    <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error" nzShowIcon>{{alertMessage}}</nz-alert>
+  </div>
+  <br>
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your username!">
       <nz-input-group nzPrefixIcon="user">

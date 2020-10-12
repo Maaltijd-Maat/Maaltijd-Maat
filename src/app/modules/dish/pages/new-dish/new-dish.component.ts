@@ -34,7 +34,7 @@ export class NewDishComponent implements OnInit {
 
     if (this.formGroup.valid) {
       //TODO user id ophalen en deze inserten in de dish
-      const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false, [], "5f7889e3c16f07683bd8a81e");
+      const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false, [], "5f7af1abe6b1651ca98edbab");
       const dish = new Dish(
         this.formGroup.controls['name'].value,
         user,
