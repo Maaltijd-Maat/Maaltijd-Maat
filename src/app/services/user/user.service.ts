@@ -24,10 +24,10 @@ export class UserService implements IUserService {
     this.http = http;
   }
 
-  authenticateUser(user: IUser): string {
-    return '';
-  }
-
+  /**
+   * Register user http call to backend API
+   * @param user object with necessary information.
+   */
   registerUser(user: IUser) {
     return new Promise((resolve, reject) => {
       this.http
@@ -39,6 +39,10 @@ export class UserService implements IUserService {
     });
   }
 
+  /**
+   * Update existing user into database by http call to backend.
+   * @param user object with changes.
+   */
   updateUser(user: IUser): void {}
 
 }

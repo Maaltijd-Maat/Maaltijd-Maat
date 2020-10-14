@@ -24,6 +24,10 @@ export class RegisterComponent implements OnInit {
     }, { validator: this.comparePasswordInputs });
   }
 
+  /**
+   * Compare the password input fields for differences.
+   * @param registerForm the form controls
+   */
   comparePasswordInputs(registerForm: FormGroup) {
     let password = registerForm.controls['password'].value;
     let confirmPassword = registerForm.controls['confirmPassword'].value;
