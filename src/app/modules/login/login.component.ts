@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {User} from '@models:/user';
-import {UserService} from '@services/user/user.service';
+import {authenticateService} from '@services/authenticate/authenticate.service';
+import {Credentials} from '@models:/credentials';
 
 @Component({
   selector: 'app-login-component',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   alertMessage?: string;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: FormBuilder, private authenticateService: authenticateService) {}
 
   ngOnInit() : void{
     this.loginForm = this.fb.group({
@@ -29,17 +29,8 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.loginForm.valid){
-      const login = new User(
-        '',
-        '',
-        this.loginForm.controls['email'].value,
-        this.loginForm.controls['password'].value,
-        '',
-        true,
-        []
-        );
-
-      this.userService.authenticateUser(login).then(
+      const credentials = new Credentials(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
+      this.authenticateService.authenticateUser(credentials).then(
         (res) => {
           this.alertMessage = 'success';
         },

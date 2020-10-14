@@ -12,14 +12,6 @@ export interface IUserService {
   registerUser(user: IUser): void;
 
   /**
-   * Authenticate the user by credentials.
-   *
-   * @param user - user object for the credentials.
-   * @return authentication token for further use of the backend calls.
-   */
-  authenticateUser(user: IUser): void;
-
-  /**
    * Change the user information by updating.
    *
    * @param user - the user object with changes.
