@@ -47,8 +47,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm.controls['email'].value,
         this.registerForm.controls['password'].value,
         '',
-        false
-        );
+        false);
 
       //TODO redux...
       this.userService.registerUser(user).then(
