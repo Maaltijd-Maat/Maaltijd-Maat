@@ -1,0 +1,14 @@
+[nz-menu] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: flex-end;
+  width: 240px;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.list {
+  flex-grow: 4;
+}
