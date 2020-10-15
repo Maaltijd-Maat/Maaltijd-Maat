@@ -1,0 +1,10 @@
+<div nz-menu nzMode="vertical">
+  <ul class="list">
+    <li *ngFor="let group of groups"
+        nz-menu-item>
+      <a>{{group.name}}</a>
+    </li>
+  </ul>
+  <button nz-button nzType="primary">Create new group</button>
+</div>
+<router-outlet></router-outlet>
