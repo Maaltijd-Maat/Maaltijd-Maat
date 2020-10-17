@@ -35,5 +35,4 @@ export class GroupService implements IGroupService {
   public getGroups(): Observable<IGroup[]> {
     return this.http.get<IGroup[]>(this.url);
   }
-
 }
