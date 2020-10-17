@@ -14,9 +14,9 @@ export class LoginComponent implements OnInit {
   alertMessage?: string;
   isLoading = false;
 
-  constructor(private router: Router, private fb: FormBuilder, private authenticateService: authenticateService) {}
+  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService) {}
 
-  ngOnInit() : void{
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].updateValueAndValidity();
     }
 
-    if (this.loginForm.valid){
+    if (this.loginForm.valid) {
       const credentials = new Credentials(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
       if (this.loginForm.controls['remember'].value){
         //TODO remember credentials by session or localstorage...
