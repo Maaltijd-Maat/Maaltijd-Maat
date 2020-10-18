@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {authenticateService} from '@services/authenticate/authenticate.service';
-import {Credentials} from '@models:/credentials';
-import {Router} from '@angular/router';
+import { AuthenticateService } from '@services/authenticate/authenticate.service';
+import { Credentials } from '@models:/credentials';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   alertMessage?: string;
   isLoading = false;
 
-  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService) {}
+  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid) {
       const credentials = new Credentials(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
-      if (this.loginForm.controls['remember'].value){
+      if (this.loginForm.controls['remember'].value) {
         //TODO remember credentials by session or localstorage...
       }
       this.authenticateService.authenticateUser(credentials).then(
