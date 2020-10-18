@@ -7,7 +7,7 @@ export interface IGroupService {
    *
    * @param user - newly create user object.
    */
-  createGroup(group: IGroup): void;
+  createGroup(name: string): Observable<Object>;
 
   /**
    * TODO

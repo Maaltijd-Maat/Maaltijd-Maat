@@ -1,0 +1,31 @@
+<nz-page-header [nzGhost]="false" class="site-page-header" nzBackIcon nzTitle="New Group"
+                nzSubtitle="Create a new group">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+    <nz-breadcrumb-item><a routerLink="../">Groups</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>New Group</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
+<div class="content">
+  <nz-card>
+    <form nz-form [nzLayout]="'horizontal'" [formGroup]="formGroup" (ngSubmit)="submitForm()">
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="7" [nzXs]="24" nzRequired nzFor="name">Group name</nz-form-label>
+        <nz-form-control [nzMd]="10" [nzSm]="12" [nzXs]="24" nzErrorTip="Please input a name for the new group!">
+          <nz-input-group>
+            <input nz-input formControlName="name"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzOffset]="7">
+          <button nz-button nzType="primary" [disabled]="!formGroup.valid">Create Group</button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+  </nz-card>
+</div>

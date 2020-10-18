@@ -23,8 +23,8 @@ export class GroupService implements IGroupService {
     this.http = http;
   }
 
-  public createGroup(group: IGroup): void {
-    // TODO
+  public createGroup(name: string): Observable<Object> {
+    return this.http.post<IGroup>(this.url, name);
   }
 
   public getGroup(id: string): Observable<IGroup> {
