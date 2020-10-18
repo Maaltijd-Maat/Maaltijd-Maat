@@ -1,0 +1,23 @@
+<div class="middle">
+  <br>
+  <form nz-form [nzLayout]="'horizontal'" class="forgot-form" [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
+    <div class="form-head">
+      <h1 nz-typography>Forgot password</h1>
+      <p>Fill in your email address to change your password</p>
+    </div>
+    <div class="alert">
+      <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success, check your email address." nzShowIcon>{{alertMessage}}</nz-alert>
+      <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error something went wrong.." nzShowIcon>{{alertMessage}}</nz-alert>
+    </div>
+    <br>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="email" placeholder="email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button [nzLoading]="isLoading" class="forgot-form-button forgot-form-margin" [nzType]="'primary'">Send email</button>
+    Or <a routerLink="/login"> login </a>
+  </form>
+</div>
