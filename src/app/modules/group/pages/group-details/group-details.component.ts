@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { IGroup } from '@models:/Group';
 
 @Component({
-  selector: 'app-group-users',
-  templateUrl: './group-users.component.html',
-  styleUrls: ['./group-users.component.scss']
+  selector: 'app-group-details',
+  templateUrl: './group-details.component.html',
+  styleUrls: ['./group-details.component.scss']
 })
-export class GroupUsersComponent {
-  public group?: IGroup;
+export class GroupDetails {
+  public group!: IGroup;
 
   constructor(private route: ActivatedRoute) {
     // Retrieve groups object from the groups resolver

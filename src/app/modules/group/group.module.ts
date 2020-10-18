@@ -6,10 +6,10 @@ import { IconsProviderModule } from '../../icons-provider.module';
 import { GroupRoutingModule } from './group-routing.module';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { NewGroupComponent } from './pages/new-group/new-group.component';
-import { GroupUsersComponent } from './pages/group-users/group-users.component';
+import { GroupDetails } from './pages/group-details/group-details.component';
 
 @NgModule({
-  declarations: [GroupsComponent, GroupUsersComponent, NewGroupComponent],
+  declarations: [GroupsComponent, GroupDetails, NewGroupComponent],
   exports: [],
   imports: [
     CommonModule,

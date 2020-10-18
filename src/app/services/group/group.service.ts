@@ -13,12 +13,6 @@ export class GroupService implements IGroupService {
   private readonly endpoint: string = '/group';
   private readonly url: string = environment.apiUrl + this.endpoint;
 
-  private readonly httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   constructor(private http: HttpClient) {
     this.http = http;
   }
