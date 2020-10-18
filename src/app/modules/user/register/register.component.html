@@ -6,8 +6,8 @@
     <p>Register today!</p>
   </div>
   <div class="alert">
-    <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success Tips" nzShowIcon>{{alertMessage}}</nz-alert>
-    <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error" nzShowIcon>{{alertMessage}}</nz-alert>
+    <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success you registered a new account, login to get access." nzShowIcon>{{alertMessage}}</nz-alert>
+    <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error something went wrong.." nzShowIcon>{{alertMessage}}</nz-alert>
   </div>
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="firstname">First Name</nz-form-label>
@@ -17,7 +17,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="lastname">Last Name</nz-form-label>
     <nz-form-control [nzSpan]="12"  nzErrorTip="Please input a lastname!">
@@ -26,7 +25,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="email">Email</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Please input a email!">
@@ -35,7 +33,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="password">password</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Please input your Password!">
@@ -44,7 +41,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired nzFor="confirmPassword">confirm password</nz-form-label>
     <nz-form-control [nzSpan]="12" nzErrorTip="Please input a password!">
@@ -53,7 +49,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
   <nz-form-item>
     <nz-form-control [nzOffset]="7">
       <button [disabled]="!registerForm.valid" nz-button nzType="primary">Register</button>

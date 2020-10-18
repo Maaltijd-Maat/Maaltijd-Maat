@@ -2,21 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { IconsProviderModule } from '../../icons-provider.module';
+import { IconsProviderModule } from '../../../icons-provider.module';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { RegisterRoutingModule } from './register-routing.module';
+import { RegisterComponent } from './register.component';
 
 @NgModule({
-  declarations: [LoginComponent],
-  exports: [LoginComponent],
+  declarations: [RegisterComponent],
+  exports: [RegisterComponent],
   imports: [
     CommonModule,
     NgZorroAntdModule,
     IconsProviderModule,
     ReactiveFormsModule,
-    LoginRoutingModule
+    RegisterRoutingModule,
   ],
   providers: []
 })
-export class LoginModule {}
+export class RegisterModule {}

@@ -13,7 +13,10 @@ export class AppComponent {
   constructor(router:Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-        this.showMenu = event.url !== "/register" && event.url !== "/login";
+        this.showMenu =
+          !event.url.includes("register") &&
+          !event.url.includes("login") &&
+          !event.url.includes("forgot");
       }
     })
   }
