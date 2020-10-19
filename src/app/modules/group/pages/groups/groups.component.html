@@ -1,10 +1,13 @@
-<div nz-menu nzMode="vertical">
-  <ul class="list">
-    <li *ngFor="let group of groups"
-        nz-menu-item>
-      <a routerLink="./{{group.id}}">{{group.name}}</a>
-    </li>
-  </ul>
-  <button nz-button nzType="primary">Create new group</button>
-</div>
-<router-outlet></router-outlet>
+<nz-card [nzBodyStyle]="{'display': 'flex', 'padding-left': 0, 'padding-right': 0}">
+  <div nz-menu  nzMode="inline">
+    <ul class="list">
+      <li *ngFor="let group of groups"
+          nz-menu-item nzMatchRouter>
+        <a [routerLink]="['group', group['id']]">{{group.name}}</a>
+      </li>
+    </ul>
+    <button nz-button [routerLink]="['new']" nzType="primary">Create new group</button>
+  </div>
+  <router-outlet></router-outlet>
+</nz-card>
+
