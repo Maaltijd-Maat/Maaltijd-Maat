@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GroupDetails } from './pages/group-details/group-details.component';
-import { GroupResolver } from './pages/group-details/group-resolver.service';
+
 import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupsResolver } from './pages/groups/groups.resolver';
+import { GroupDetails } from './pages/group-details/group-details.component';
+import { GroupResolver } from './pages/group-details/group-resolver.service';
 import { NewGroupComponent } from './pages/new-group/new-group.component';
 
 const routes: Routes = [

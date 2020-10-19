@@ -44,11 +44,15 @@ export class GroupsComponent {
     }
   }
 
+  /**
+   * Refreshes list of the user's groups.
+   */
   private refreshList() {
     this.groupService.getGroups().subscribe((groups) => {
       this.groups = groups;
     })
   }
+
 
   private navigateToGroup(id: string) {
     this.router.navigate(['group', id], { relativeTo: this.route });
