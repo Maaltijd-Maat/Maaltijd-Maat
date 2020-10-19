@@ -7,6 +7,7 @@ import { GroupRoutingModule } from './group-routing.module';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { NewGroupComponent } from './pages/new-group/new-group.component';
 import { GroupDetails } from './pages/group-details/group-details.component';
+import { SharedGroupService } from './shared-group.service';
 
 @NgModule({
   declarations: [GroupsComponent, GroupDetails, NewGroupComponent],
@@ -18,6 +19,6 @@ import { GroupDetails } from './pages/group-details/group-details.component';
     ReactiveFormsModule,
     GroupRoutingModule
   ],
-  providers: []
+  providers: [SharedGroupService]
 })
 export class GroupModule {}

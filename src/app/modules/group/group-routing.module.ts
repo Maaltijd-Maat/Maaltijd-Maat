@@ -7,9 +7,11 @@ import { GroupsResolver } from './pages/groups/groups.resolver';
 import { NewGroupComponent } from './pages/new-group/new-group.component';
 
 const routes: Routes = [
-  { path: '', component: GroupsComponent, resolve: { groups: GroupsResolver } },
-  { path: ':id', component: GroupDetails, resolve: { group: GroupResolver } },
-  { path: 'new', component: NewGroupComponent }
+  { path: '', component: GroupsComponent, resolve: { groups: GroupsResolver },
+    children: [
+      { path: 'group/:id', component: GroupDetails, resolve: { group: GroupResolver }},
+      { path: 'new', component: NewGroupComponent }
+    ]}
 ];
 
 @NgModule({

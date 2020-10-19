@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IGroup } from '@models:/Group';
@@ -17,7 +17,7 @@ export class GroupService implements IGroupService {
     this.http = http;
   }
 
-  public createGroup(name: string): Observable<Object> {
+  public createGroup(name: string): Observable<IGroup> {
     return this.http.post<IGroup>(this.url, name);
   }
 
@@ -28,5 +28,15 @@ export class GroupService implements IGroupService {
 
   public getGroups(): Observable<IGroup[]> {
     return this.http.get<IGroup[]>(this.url);
+  }
+
+  public putGroup(id: string, group: IGroup): Observable<IGroup>  {
+    const url = `${this.url}/${id}`;
+    return this.http.put<IGroup>(url, group)
+  }
+
+  public deleteGroup(id: string): Observable<object> {
+    const url = `${this.url}/${id}`;
+    return this.http.delete(url);
   }
 }

@@ -1,1 +1,48 @@
-<p>{{ this.group.name }}</p>
+<div nz-col nzFlex="auto">
+  <h3 nz-typography>{{group!.name}}</h3>
+  <h4 nz-typography>Settings</h4>
+</div>
+<form nz-form [nzNoColon]="false" [nzLayout]="'vertical'" [formGroup]="formGroup"
+      (ngSubmit)="updateGroup()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="name">Group name</nz-form-label>
+    <nz-form-control [nzMd]="10" [nzSm]="12" [nzXs]="24" nzErrorTip="Please input a name for the dish!">
+      <nz-input-group>
+        <input nz-input formControlName="name"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary" [disabled]="!formGroup.valid">Update Group</button>
+      <a nz-popconfirm nzPlacement="bottomRight"
+         nzPopconfirmTitle="Are you sure that you want to delete {{ this.group!.name }}?" (nzOnConfirm)="deleteGroup()">
+        <button nz-button nzDanger type="button">Delete Group</button>
+      </a>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+<div nz-col nzFlex="auto">
+  <h4 nz-typography>Members</h4>
+</div>
+
+<nz-table #headerTable [nzData]="this.group!.members!" [nzPageSize]="10" [nzShowPagination]="false" >
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>E-mail</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of headerTable.data">
+    <td>
+      <nz-avatar nzIcon="user"></nz-avatar>
+    </td>
+    <td>{{user['firstname']}} {{user['lastname']}}</td>
+    <td>{{user['email']}}</td>
+  </tr>
+  </tbody>
+</nz-table>
