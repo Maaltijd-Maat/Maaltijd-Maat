@@ -22,7 +22,10 @@ export class NewGroupComponent {
     });
   }
 
-  submitForm(): void {
+  /**
+   * Create group and uploads it to the backend.
+   */
+  createGroup(): void {
     for (const i in this.formGroup.controls) {
       this.formGroup.controls[i].markAsDirty();
       this.formGroup.controls[i].updateValueAndValidity();
