@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticateService } from '@services/authenticate/authenticate.service';
 import { Credentials } from '@models:/credentials';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].updateValueAndValidity();
     }
 
-    if (this.loginForm.valid) {
+    if (this.loginForm.valid){
       const credentials = new Credentials(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
       if (this.loginForm.controls['remember'].value) {
         //TODO remember credentials by session or localstorage...

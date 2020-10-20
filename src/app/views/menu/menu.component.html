@@ -15,10 +15,17 @@
       <li nz-submenu nzOpen nzTitle="Dishes" nzIcon="question-circle">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dishes">Overview</a>
+            <a [routerLink]="['/', 'dishes']">Overview</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dishes/new">New Dish</a>
+            <a [routerLink]="['/', 'dishes', 'new']">New Dish</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Groups" nzIcon="question-circle">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/groups">Groups</a>
           </li>
         </ul>
       </li>

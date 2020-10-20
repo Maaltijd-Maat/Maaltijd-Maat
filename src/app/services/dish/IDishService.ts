@@ -20,7 +20,7 @@ export interface IDishService {
    *
    * @param dish - Dish that needs to be uploaded
    */
-  postDish(dish: IDish): void;
+  postDish(dish: IDish): Observable<object>;
 
   /**
    * Updates existing dish.
@@ -28,12 +28,12 @@ export interface IDishService {
    * @param id    - Id of dish that needs to be updated
    * @param dish  - Updated dish
    */
-  putDish(id: string, dish: IDish): void;
+  putDish(id: string, dish: IDish): Observable<object>;
 
   /**
    * Deletes a specified dish by id.
    *
    * @param id - Id of the to be deleted dish
    */
-  deleteDish(id: string): void;
+  deleteDish(id: string): Observable<object>;
 }

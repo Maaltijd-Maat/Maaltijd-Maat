@@ -8,7 +8,7 @@ import { User } from '@models:/user';
 import { DishService } from '@services/dish/dish.service';
 
 @Component({
-  selector: 'app-add-dish',
+  selector: 'app-new-dish',
   templateUrl: './new-dish.component.html',
   styleUrls: ['./new-dish.component.scss']
 })

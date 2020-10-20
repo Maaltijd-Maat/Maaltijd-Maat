@@ -1,0 +1,20 @@
+<div nz-col nzFlex="auto">
+  <h3 nz-typography>New Group</h3>
+</div>
+<form nz-form [nzLayout]="'vertical'" [formGroup]="formGroup" (ngSubmit)="createGroup()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="name">Group name</nz-form-label>
+    <nz-form-control [nzMd]="10" [nzSm]="12" [nzXs]="24" nzErrorTip="Please input a name for the new group!">
+      <nz-input-group>
+        <input nz-input formControlName="name"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzSpan]="14">
+      <button nz-button nzType="primary" [disabled]="!formGroup.valid">Create Group</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
