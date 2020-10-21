@@ -17,6 +17,11 @@ export class InviteService implements IInviteService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Creates a new group invite.
+   * @param groupId - ID of the group you want to invite the user to
+   * @param inviteeMail - email of the user you want to invite to the group
+   */
   public createInvite(groupId: string, inviteeMail: string): Observable<IInvite> {
     const params = new HttpParams()
       .set('groupId', groupId.trim())
@@ -25,16 +30,28 @@ export class InviteService implements IInviteService {
     return this.http.post<IInvite>(this.url, null,{ params })
   }
 
+  /**
+   * Returns the specified invite if it exists.
+   * @param id - ID of the requested group
+   */
   public getInvite(id: string): Observable<IInvite> {
     const url = `${this.url}/${id}`;
     return this.http.get<IInvite>(url);
   }
 
+  /**
+   * Accept invite.
+   * @param id - id of the invite
+   */
   public acceptInvite(id: string): Observable<IInvite> {
     const url = `${this.url}/${id}/accept`;
     return this.http.post<IInvite>(url, null);
   }
 
+  /**
+   * Decline invite
+   * @param id - invite of the invite
+   */
   public declineInvite(id: string): Observable<IInvite> {
     const url = `${this.url}/${id}/decline`;
     return this.http.post<IInvite>(url, null);
