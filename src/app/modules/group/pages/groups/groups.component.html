@@ -1,3 +1,10 @@
+<nz-page-header [nzGhost]="false" class="site-page-header" nzTitle="Groups">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+    <nz-breadcrumb-item>Groups</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
 <nz-card [nzBodyStyle]="{'display': 'flex', 'padding-left': 0, 'padding-right': 0}">
   <div nz-menu  nzMode="inline">
     <ul class="list">
@@ -5,6 +12,7 @@
         <a [routerLink]="['group', group['id']]">{{group.name}}</a>
       </li>
     </ul>
+    <nz-divider></nz-divider>
     <button nz-button [routerLink]="['new']" nzType="primary">Create new group</button>
   </div>
   <router-outlet></router-outlet>

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./modules/user/login/login.module').then(m => m.LoginModule) },
   { path: 'welcome', loadChildren: () => import('./modules/welcome/welcome.module').then(m => m.WelcomeModule) },
   { path: 'groups', loadChildren: () => import('./modules/group/group.module').then(m => m.GroupModule)},
-  {path: 'invite', loadChildren: () => import('./modules/invite/invite.module').then(m => m.InviteModule)}
+  {path: 'invites', loadChildren: () => import('./modules/invite/invite.module').then(m => m.InviteModule)}
 ];
 
 @NgModule({

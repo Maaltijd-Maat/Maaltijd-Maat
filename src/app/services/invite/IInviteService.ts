@@ -6,6 +6,8 @@ export interface IInviteService {
 
   getInvite(id: string): Observable<IInvite>;
 
+  getInvites(): Observable<IInvite[]>;
+
   acceptInvite(id: string): Observable<IInvite>;
 
   declineInvite(id: string): Observable<IInvite>;

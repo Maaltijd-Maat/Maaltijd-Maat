@@ -40,6 +40,13 @@ export class InviteService implements IInviteService {
   }
 
   /**
+   * Returns all the user's invites.
+   */
+  public getInvites(): Observable<IInvite[]> {
+    return this.http.get<IInvite[]>(this.url);
+  }
+
+  /**
    * Accept invite.
    * @param id - id of the invite
    */
