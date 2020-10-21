@@ -32,4 +32,12 @@ export class InviteComponent {
       this._location.back();
     });
   }
+
+  declineInvite(): void {
+    const id = this.invite.id;
+    this.inviteService.declineInvite(id).subscribe(() => {
+      this.message.create('success', `Successfully declined the invite for ${this.invite.group.name}!`)
+      this._location.back();
+    });
+  }
 }
