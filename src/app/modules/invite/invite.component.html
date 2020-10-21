@@ -1,0 +1,13 @@
+<div class="content">
+  <nz-card>
+    <nz-result [nzIcon]="'mail-twotone'" nzTitle="Invitation to {{ invite.group.name }}">
+      <div nz-result-subtitle>
+        <p><b>{{ invite.inviter.firstname }}</b> invited you to join <b>{{ invite.group.name }}</b></p>
+      </div>
+      <div nz-result-extra>
+        <button nz-button nzType="primary">Accept Invite</button>
+        <button nz-button nzType="default" nzDanger>Decline Invite</button>
+      </div>
+    </nz-result>
+  </nz-card>
+</div>
