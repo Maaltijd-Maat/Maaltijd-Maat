@@ -5,13 +5,11 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { GroupsResolver } from './pages/groups/groups.resolver';
 import { GroupDetails } from './pages/group-details/group-details.component';
 import { GroupResolver } from './pages/group-details/group-resolver.service';
-import { NewGroupComponent } from './pages/new-group/new-group.component';
 
 const routes: Routes = [
   { path: '', component: GroupsComponent, resolve: { groups: GroupsResolver },
     children: [
-      { path: 'group/:id', component: GroupDetails, resolve: { group: GroupResolver }},
-      { path: 'new', component: NewGroupComponent }
+      { path: 'group/:id', component: GroupDetails, resolve: { group: GroupResolver }}
     ]}
 ];
 

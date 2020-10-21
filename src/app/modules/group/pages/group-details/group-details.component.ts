@@ -94,8 +94,4 @@ export class GroupDetails {
   showInviteModal(): void {
     this.inviteModalIsVisible = true;
   }
-
-  closeInviteModal(): void {
-    this.inviteModalIsVisible = false;
-  }
 }
