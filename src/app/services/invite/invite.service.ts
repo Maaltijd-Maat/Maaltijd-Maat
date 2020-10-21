@@ -29,4 +29,9 @@ export class InviteService implements IInviteService {
     const url = `${this.url}/${id}`;
     return this.http.get<IInvite>(url);
   }
+
+  public acceptInvite(id: string): Observable<IInvite> {
+    const url = `${this.url}/${id}/accept`;
+    return this.http.post<IInvite>(url, null);
+  }
 }

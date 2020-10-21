@@ -5,4 +5,6 @@ export interface IInviteService {
   createInvite(groupId: string, inviteeMail: string): Observable<IInvite>;
 
   getInvite(id: string): Observable<IInvite>;
+
+  acceptInvite(id: string): Observable<IInvite>;
 }

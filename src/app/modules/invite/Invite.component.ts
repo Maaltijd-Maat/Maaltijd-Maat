@@ -19,9 +19,17 @@ export class InviteComponent {
               private inviteService: InviteService,
               private _location: Location,
               private message: NzMessageService) {
-    // Retrieve group object from the group resolver
+    // Retrieve invite object from the invite resolver
     this.route.data.subscribe((data) => {
       this.invite = data.invite;
+    });
+  }
+
+  acceptInvite(): void {
+    const id = this.invite.id;
+    this.inviteService.acceptInvite(id).subscribe(() => {
+      this.message.create('success', `Successfully accepted the invite for ${this.invite.group.name}!`)
+      this._location.back();
     });
   }
 }
