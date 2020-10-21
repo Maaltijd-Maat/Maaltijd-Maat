@@ -28,7 +28,8 @@
   <h4 nz-typography>Members</h4>
 </div>
 
-<nz-table #headerTable [nzData]="this.group.members!" [nzPageSize]="10" [nzShowPagination]="false" >
+<button nz-button [nzType]="'primary'" (click)="showInviteModal()"><span>Invite Member</span></button>
+<nz-table #headerTable [nzData]="this.group.members!" [nzPageSize]="10" [nzShowPagination]="false">
   <thead>
   <tr>
     <th></th>
@@ -46,3 +47,23 @@
   </tr>
   </tbody>
 </nz-table>
+
+<nz-modal [(nzVisible)]="inviteModalIsVisible" (nzOnCancel)="closeInviteModal()" [nzFooter]="null">
+  <h3 nz-typography>
+    <i nz-icon nzType="mail" [nzTheme]="'twotone'"></i>
+    Invite a new member to {{ group.name }}
+  </h3>
+
+  <form nz-form [formGroup]="inviteMemberForm" (ngSubmit)="inviteMember()">
+    <nz-form-item >
+      <nz-form-control nzErrorTip="Please input a valid e-mail!">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+        <input type="text" formControlName="mail" nz-input placeholder="Member's e-mail"/>
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSearch>Invite</button>
+      </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

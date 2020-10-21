@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { InviteService } from '@services/invite/invite.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { IGroup } from '@models:/Group';
@@ -17,9 +18,14 @@ export class GroupDetails {
   group!: IGroup;
   formGroup!: FormGroup;
 
+  inviteMemberForm!: FormGroup;
+
+  inviteModalIsVisible = false;
+
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private groupService: GroupService,
+              private inviteService: InviteService,
               private _location: Location,
               private message: NzMessageService,
               private sharedGroupService: SharedGroupService) {
@@ -32,6 +38,10 @@ export class GroupDetails {
         name: [this.group!.name, [Validators.required]]
       });
     });
+
+    this.inviteMemberForm = this.fb.group({
+      mail: [null, [Validators.required, Validators.email]]
+    })
   }
 
   updateGroup(): void {
@@ -60,5 +70,32 @@ export class GroupDetails {
     }, error => {
       // TODO: Add convenient way to present errors at the frontend.
     });
+  }
+
+  inviteMember(): void {
+    for (const i in this.inviteMemberForm.controls) {
+      this.inviteMemberForm.controls[i].markAsDirty();
+      this.inviteMemberForm.controls[i].updateValueAndValidity();
+    }
+
+    if (this.inviteMemberForm.valid) {
+      const groupId = this.group.id!;
+      const inviteeMail = this.inviteMemberForm.controls['mail'].value;
+
+      this.inviteService.createInvite(groupId, inviteeMail).subscribe(() => {
+        this.message.create('success', `Successfully invited ${inviteeMail} for ${this.group.name}!`);
+        this.inviteModalIsVisible = false;
+      }, error => {
+        // TODO: Add convenient way to present errors at the frontend.
+      });
+    }
+  }
+
+  showInviteModal(): void {
+    this.inviteModalIsVisible = true;
+  }
+
+  closeInviteModal(): void {
+    this.inviteModalIsVisible = false;
   }
 }
