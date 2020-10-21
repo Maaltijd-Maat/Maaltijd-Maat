@@ -50,7 +50,6 @@
 
 <nz-modal [(nzVisible)]="inviteModalIsVisible" (nzOnCancel)="closeInviteModal()" [nzFooter]="null">
   <h3 nz-typography>
-    <i nz-icon nzType="mail" [nzTheme]="'twotone'"></i>
     Invite a new member to {{ group.name }}
   </h3>
 
@@ -58,7 +57,7 @@
     <nz-form-item >
       <nz-form-control nzErrorTip="Please input a valid e-mail!">
       <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
-        <input type="text" formControlName="mail" nz-input placeholder="Member's e-mail"/>
+        <input type="text" formControlName="mail" nz-input placeholder="User's e-mail"/>
       </nz-input-group>
       <ng-template #suffixButton>
         <button nz-button nzType="primary" nzSearch>Invite</button>
