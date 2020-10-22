@@ -4,8 +4,8 @@
     <nz-breadcrumb-item>Groups</nz-breadcrumb-item>
   </nz-breadcrumb>
   <nz-page-header-extra>
-    <button nz-button (click)="refreshList()"><i nz-icon nzType="reload"></i></button>
-    <button nz-button nzType="primary" (click)="showNewGroupModal()"><i nz-icon nzType="plus"></i>New Group</button>
+    <button nz-button (click)="refreshList()"><i nz-icon nzType="reload"></i>Refresh</button>
+    <button nz-button (click)="showNewGroupModal()" nzType="primary"><i nz-icon nzType="plus"></i>New Group</button>
   </nz-page-header-extra>
 </nz-page-header>
 
@@ -24,14 +24,14 @@
 
 <!-- This template is shown when there's no group the user is part of -->
 <ng-template #noGroups>
-<nz-empty [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
-      <ng-template #contentTpl>
-        <span>You are not a member of a group yet</span>
-      </ng-template>
-      <ng-template #footerTpl>
-        <button nz-button nzType="primary" (click)="showNewGroupModal()">Create Group</button>
-      </ng-template>
-    </nz-empty>
+  <nz-empty [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+    <ng-template #contentTpl>
+      <span>You are not a member of a group yet</span>
+    </ng-template>
+    <ng-template #footerTpl>
+      <button nz-button nzType="primary" (click)="showNewGroupModal()">Create Group</button>
+    </ng-template>
+  </nz-empty>
 </ng-template>
 
-<app-new-group [(isVisible)]="showModal"></app-new-group>
+<app-new-group [(isVisible)]="isNewGroupModalVisible"></app-new-group>

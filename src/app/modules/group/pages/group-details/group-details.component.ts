@@ -14,7 +14,7 @@ import { SharedGroupService } from '../../shared-group.service';
   templateUrl: './group-details.component.html',
   styleUrls: ['./group-details.component.scss']
 })
-export class GroupDetails {
+export class GroupDetailsComponent {
   group!: IGroup;
   formGroup!: FormGroup;
 

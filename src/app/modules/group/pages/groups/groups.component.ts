@@ -11,7 +11,7 @@ import { SharedGroupService } from '../../shared-group.service';
 })
 export class GroupsComponent {
   public groups!: IGroup[];
-  public showModal: boolean = false;
+  public isNewGroupModalVisible: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -45,10 +45,6 @@ export class GroupsComponent {
     }
   }
 
-  public showNewGroupModal(): void {
-    this.showModal = true;
-  }
-
   /**
    * Refreshes list of the user's groups.
    */
@@ -60,5 +56,9 @@ export class GroupsComponent {
 
   private navigateToGroup(id: string): void {
     this.router.navigate(['group', id], { relativeTo: this.route });
+  }
+
+  public showNewGroupModal(): void {
+    this.isNewGroupModalVisible = true;
   }
 }
