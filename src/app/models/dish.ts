@@ -3,7 +3,7 @@ import { IUser } from '@models:/user';
 
 export interface IDish {
   readonly id?: string;
-  readonly author?: IUser;
+  readonly author: IUser;
 
   name: string;
   amountOfPeople: number;

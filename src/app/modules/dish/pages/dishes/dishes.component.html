@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <nz-table #headerTable [nzData]="(dishes$ | async)!" [nzLoading]="loading" [nzPageSize]="10">
+    <nz-table #headerTable [nzData]="dishes" [nzLoading]="loading" [nzPageSize]="10">
       <thead>
       <tr>
         <th>Name</th>
@@ -32,7 +32,7 @@
       <tbody>
       <tr *ngFor="let dish of headerTable.data">
         <td><a [routerLink]="['./', dish['id']]">{{ dish['name'] }}</a></td>
-        <td><nz-avatar nzIcon="user"></nz-avatar></td>
+        <td>{{ dish['author']['firstname'] }} {{ dish['author']['lastname'] }}</td>
       </tr>
       </tbody>
     </nz-table>
