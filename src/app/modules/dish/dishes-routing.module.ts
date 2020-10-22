@@ -10,7 +10,7 @@ import { NewDishComponent } from './pages/new-dish/new-dish.component';
 const routes: Routes = [
   { path: '', component: DishesComponent, resolve: { dishes: DishesResolver }  },
   { path: 'new', component: NewDishComponent },
-  { path: ':id', component: EditDishComponent, resolve: { dish: EditDishResolver } }
+  { path: 'edit/:id', component: EditDishComponent, resolve: { dish: EditDishResolver } }
 ];
 
 @NgModule({
