@@ -25,7 +25,10 @@
       <li nz-submenu nzOpen nzTitle="Groups" nzIcon="question-circle">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/groups">Groups</a>
+            <a [routerLink]="['groups']">Groups</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a [routerLink]="['groups', 'invites']">Invites</a>
           </li>
         </ul>
       </li>

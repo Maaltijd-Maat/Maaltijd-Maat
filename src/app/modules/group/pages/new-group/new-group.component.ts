@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IGroup } from '@models:/Group';
@@ -12,6 +12,10 @@ import { SharedGroupService } from '../../shared-group.service';
   styleUrls: ['./new-group.component.scss']
 })
 export class NewGroupComponent {
+  @Input()  isVisible: boolean = false;
+  @Output() isVisibleChange = new EventEmitter<boolean>();
+
+  isLoading: boolean = false;
   formGroup!: FormGroup;
 
   constructor(private fb: FormBuilder, private groupService: GroupService,
@@ -31,16 +35,24 @@ export class NewGroupComponent {
       this.formGroup.controls[i].updateValueAndValidity();
     }
 
-    const groupName = this.formGroup.controls['name'].value;
-
     if (this.formGroup.valid) {
+      const groupName = this.formGroup.controls['name'].value;
+
+      this.isLoading = true;
+
       this.groupService.createGroup(groupName).subscribe((group: IGroup) => {
         this.message.create('success', `Successfully added ${groupName}!`)
         this.sharedGroupService.emitCreate(group.id!);
+        this.isLoading = false;
+        this.closeModal();
       }, error => {
+        this.isLoading = false;
         // TODO: Add convenient way to present errors at the frontend.
       });
     }
   }
 
+  closeModal(): void {
+    this.isVisibleChange.next(false);
+  }
 }

@@ -1,0 +1,35 @@
+<nz-page-header [nzGhost]="false" class="site-page-header" nzTitle="Invites">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+    <nz-breadcrumb-item><a [routerLink]="['../groups']">Groups</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>Invites</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
+  <nz-card>
+    <div class="toolbar" nz-row>
+      <div nz-col nzFlex="auto">
+        <h3 nz-typography>Invites</h3>
+      </div>
+      <div nz-col>
+        <nz-button-group>
+          <button nz-button (click)="refreshInvites()"><i nz-icon nzType="reload"></i></button>
+        </nz-button-group>
+      </div>
+    </div>
+
+    <nz-table #headerTable [nzData]="invites" [nzLoading]="loading" [nzPageSize]="10">
+      <thead>
+      <tr>
+        <th>Group</th>
+        <th>Inviter</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let invite of headerTable.data">
+        <td><a [routerLink]="['./', invite['id']]">{{ invite['group']['name'] }}</a></td>
+        <td><nz-avatar nzIcon="user"></nz-avatar>{{ invite['inviter']['firstname'] }} {{ invite['inviter']['lastname'] }}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>

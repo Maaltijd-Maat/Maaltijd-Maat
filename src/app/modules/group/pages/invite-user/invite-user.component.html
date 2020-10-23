@@ -1,0 +1,24 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="closeInviteModal()" [nzFooter]="null">
+  <h3 nz-typography>
+    Invite a new member to {{ group.name }}
+  </h3>
+
+  <form nz-form [formGroup]="formGroup" (ngSubmit)="inviteMember()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input a valid e-mail!">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+          <input type="text" formControlName="mail" nz-input placeholder="User's e-mail"/>
+        </nz-input-group>
+        <ng-template #suffixButton>
+          <button [nzLoading]="isUploading"
+                  nzType="primary"
+                  nz-button
+                  nzSearch>
+            <i nz-icon nzType="mail" nzTheme="outline"></i>
+            Invite
+          </button>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
