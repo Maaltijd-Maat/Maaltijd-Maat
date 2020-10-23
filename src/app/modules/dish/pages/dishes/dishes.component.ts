@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { IDish } from '@models:/dish';
 import { DishService } from '@services/dish/dish.service';
@@ -10,20 +9,20 @@ import { DishService } from '@services/dish/dish.service';
   templateUrl: './dishes.component.html',
   styleUrls: ['./dishes.component.scss']
 })
-export class DishesComponent implements OnInit {
+export class DishesComponent {
   checked = false;
-  dishes$?: Observable<IDish[]>;
+  dishes!: IDish[];
 
   currentPageDishes: IDish[] = [];
   checkedIds = new Set<string>();
 
   loading: boolean = false;
 
-  constructor(private dishService: DishService) {
-  }
-
-  ngOnInit(): void {
-    this.getDishes();
+  constructor(private route: ActivatedRoute,
+              private dishService: DishService) {
+    this.route.data.subscribe((data) => {
+      this.dishes = data.dishes;
+    });
   }
 
   /**
@@ -39,12 +38,12 @@ export class DishesComponent implements OnInit {
    */
   private getDishes(): void {
     this.loading = true;
-    this.dishes$ = this.dishService.getDishes()
-      .pipe(
-        // TODO: Add convenient error handling upon timeout or other errors returned by API.
-        debounceTime(300),
-        distinctUntilChanged(),
-        tap(() => this.loading = false),
-      )
+    this.dishService.getDishes().subscribe((dishes) => {
+      this.dishes = dishes;
+      this.loading = false;
+    }, () => {
+      this.loading = false;
+      // TODO: ERROR HANDLING
+    })
   }
 }
