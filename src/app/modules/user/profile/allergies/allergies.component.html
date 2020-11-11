@@ -1,0 +1,41 @@
+<div nz-col nzFlex="auto">
+  <h3 nz-typography>Set your allergies</h3>
+  <p>All members of a group can see your allergies. This is important for the chef of the day.</p>
+</div>
+<form nz-form [formGroup]="allergiesForm" (ngSubmit)="submitForm()">
+  <div class="alert">
+    <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success you changed your allergies!" nzShowIcon>{{alertMessage}}</nz-alert>
+    <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error something went wrong.." nzShowIcon>{{alertMessage}}</nz-alert>
+  </div>
+  <br>
+  <nz-form-item *ngFor="let control of listOfControl; let i = index; let b = index;">
+    <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i == 0" [nzFor]="control.controlInstance">Allergies </nz-form-label>
+    <nz-form-control
+      [nzXs]="24"
+      [nzSm]="20"
+      [nzOffset]="i == 0 ? 0 : 4"
+    >
+      <input
+        class="allergy-input"
+        nz-input
+        placeholder="Nuts"
+        [attr.id]="control.id"
+        [formControlName]="control.controlInstance"
+      />
+      <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+      <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+        <i nz-icon nzType="plus"></i>
+        Add field
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+      <button nz-button nzType="primary">Send your list</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

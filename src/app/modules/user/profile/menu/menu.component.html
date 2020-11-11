@@ -1,0 +1,16 @@
+<nz-card [nzBodyStyle]="{'display': 'flex', 'padding-left': 0, 'padding-right': 0}">
+  <div nz-menu  nzMode="inline">
+    <ul nz-col class="list">
+      <li nz-menu-item nzMatchRouter nzSelected>
+        <a [routerLink]="['information']">General information</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['allergies']">Allergies list</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['diets']">Diets list</a>
+      </li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</nz-card>

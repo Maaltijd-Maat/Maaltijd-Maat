@@ -3,10 +3,11 @@ import { IUserService } from './IUserService';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 import { IUser } from '@models:/user';
 import {Credentials, ICredentials} from '@models:/credentials';
+import {IDish} from '@models:/dish';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,16 @@ export class UserService implements IUserService {
    * Update existing user into database by http call to backend.
    * @param user object with changes.
    */
-  updateUser(user: IUser): void {}
+  updateUser(user: IUser) {
+    return new Promise((resolve, reject) => {
+      this.http
+        .put(this.url + '/update-information', user, this.httpOptions)
+        .pipe(catchError((err: Response) => {
+          reject((err.statusText));
+          return throwError(err);
+        })).subscribe(data => { resolve(data); });
+    });
+  }
 
   /**
    * Request password change token that will be sent to the users email address if found.
@@ -74,5 +84,12 @@ export class UserService implements IUserService {
         })).subscribe(data => { resolve(data); });
     });
   }
+
+  getUserInformation(): Observable<IUser>{
+    return this.http.get<IUser>(this.url + "/information");
+  }
+
+
+
 
 }

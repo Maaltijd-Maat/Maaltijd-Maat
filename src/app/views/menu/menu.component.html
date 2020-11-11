@@ -40,6 +40,18 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
         </span>
+          <a nz-dropdown class="profile-dropdown" [nzDropdownMenu]="menu">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            Wouter Verdegaal
+            <i nz-icon nzType="down"></i>
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li (click)="profile()" nz-menu-item>Your profile</li>
+              <li (click)="help()" nz-menu-item>Help</li>
+              <li (click)="logout()" nz-menu-item>Logout</li>
+            </ul>
+          </nz-dropdown-menu>
       </div>
     </nz-header>
     <nz-content>

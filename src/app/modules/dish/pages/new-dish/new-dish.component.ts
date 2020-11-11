@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { Dish } from '@models:/dish';
-import { User } from '@models:/user';
 import { DishService } from '@services/dish/dish.service';
 
 @Component({
@@ -33,11 +32,8 @@ export class NewDishComponent implements OnInit {
     }
 
     if (this.formGroup.valid) {
-      //TODO user id ophalen en deze inserten in de dish
-      const user = new User('Wouter', 'Verdegaal', 'wouter.verdegaal@hva.nl', '0000',  'blob', false, [], "5f7af1abe6b1651ca98edbab");
       const dish = new Dish(
         this.formGroup.controls['name'].value,
-        user,
         [],
         [],
         this.formGroup.controls['amountOfPeople'].value

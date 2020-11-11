@@ -39,14 +39,18 @@ export class LoginComponent implements OnInit {
       this.authenticateService.authenticateUser(credentials).then(
         (res) => {
           this.alertMessage = 'success';
+          this.router.navigate(['/dishes']);
+          this.isLoading = false;
           setTimeout(() => {
-            this.router.navigate(['/dishes']);
-            this.isLoading = false;
-          }, 1500);
+            this.alertMessage = "";
+          }, 10000);
         },
         (err) => {
           this.alertMessage = 'error';
           this.isLoading = false;
+          setTimeout(() => {
+            this.alertMessage = "";
+          }, 10000);
         }
       );
     }

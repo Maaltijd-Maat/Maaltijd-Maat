@@ -3,10 +3,12 @@ export interface IUser {
   firstname: string;
   lastname: string;
   email: string;
+  secondEmail: string;
   password: string;
   avatar: string;
   guest: boolean;
-  allergenen: string[];
+  allergies: string[];
+  diets: string[];
 }
 
 export class User implements IUser{
@@ -14,19 +16,23 @@ export class User implements IUser{
   firstname: string;
   lastname: string;
   email: string;
+  secondEmail: string;
   password: string;
   avatar: string;
   guest: boolean;
-  allergenen: string[];
+  allergies: string[];
+  diets: string[];
 
-  constructor(firstname: string, lastname: string, email: string, password: string, avatar: string, guest: boolean, allergenen?: string[], id?: string) {
+  constructor(firstname: string, lastname: string, email: string, password: string, avatar: string, guest: boolean, secondEmail?: string, allergies?: string[],  diets?: string[], id?: string) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
+    this.secondEmail = secondEmail || '';
     this.password = password;
     this.avatar = avatar;
     this.guest = guest;
-    this.allergenen = allergenen || [];
+    this.allergies = allergies || [];
+    this.diets = diets || [];
   }
 }
