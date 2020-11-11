@@ -11,9 +11,8 @@
   margin-right: 16px;
 }
 
-[nz-button] {
-  margin-left: 8px;
-  margin-bottom: 12px;
+::ng-deep .ant-avatar {
+  margin-right: 16px;
 }
 
 .toolbar  {

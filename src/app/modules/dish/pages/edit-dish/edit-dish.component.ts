@@ -14,7 +14,7 @@ import { DishService } from '@services/dish/dish.service';
 })
 export class EditDishComponent {
   formGroup!: FormGroup;
-  dish?: IDish;
+  dish!: IDish;
 
   public constructor(private fb: FormBuilder, private dishService: DishService,
                      private route: ActivatedRoute, private _location: Location,
@@ -43,6 +43,7 @@ export class EditDishComponent {
     if (this.formGroup.valid) {
       const dish: IDish = {
         name: this.formGroup.controls['name'].value,
+        author: this.dish.author,
         ingredients: [],
         instructions: [],
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value
