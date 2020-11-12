@@ -1,5 +1,7 @@
 import { IUser } from '@models:/user';
 import {Credentials, ICredentials} from '@models:/credentials';
+import {Observable} from 'rxjs';
+import {IDish} from '@models:/dish';
 
 export interface IUserService {
 
@@ -30,4 +32,11 @@ export interface IUserService {
    * @param login only email address.
    */
   resetPassword(login: ICredentials): void
+
+  /**
+   * Request user information from logged in user.
+   *
+   * @return The information about the logged in user.
+   */
+  getUserInformation(): Observable<IUser>;
 }

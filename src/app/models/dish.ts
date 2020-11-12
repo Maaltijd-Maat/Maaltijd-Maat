@@ -3,7 +3,7 @@ import { IUser } from '@models:/user';
 
 export interface IDish {
   readonly id?: string;
-  readonly author: IUser;
+  readonly author?: IUser;
 
   name: string;
   amountOfPeople: number;
@@ -13,15 +13,15 @@ export interface IDish {
 
 export class Dish implements IDish {
   readonly id?: string;
-  readonly author: IUser;
+  readonly author?: IUser;
 
   name: string;
   amountOfPeople: number;
   ingredients: IIngredient[];
   instructions: string[];
 
-  constructor(name: string, author: IUser,
-              instructions: string[], ingredients: IIngredient[], amountOfPeople: number) {
+  constructor(name: string,
+              instructions: string[], ingredients: IIngredient[], amountOfPeople: number, author?: IUser,) {
     this.name = name;
     this.author = author;
 

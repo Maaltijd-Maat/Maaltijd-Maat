@@ -16,6 +16,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
 import { MenuComponent } from './views/menu/menu.component';
+import {NzDropDownModule} from 'ng-zorro-antd';
 
 registerLocaleData(nl);
 
@@ -33,7 +34,8 @@ registerLocaleData(nl);
     NzMenuModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzDropDownModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticateInterceptor, multi: true }

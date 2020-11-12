@@ -38,6 +38,23 @@ export class AuthenticateService implements IAuthenticateService {
   }
 
   /**
+   * Checks the token validity stored in the local storage.
+   */
+  checkTokenValidation(){
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(this.url + "/status", { responseType: 'text' })
+        .pipe(catchError((err: Response) => {
+          reject((err.statusText));
+          return throwError(err);
+        }))
+        .subscribe(response => {
+        resolve(response);
+      });
+    });
+  }
+
+  /**
    * Sets the JWT token in the localStorage of the application.
    * @param token JWT token from the backend
    */
