@@ -3,7 +3,7 @@ import { Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { Dish } from '@models:/dish';
+import { IDish } from '@models:/dish';
 import { DishService } from '@services/dish/dish.service';
 
 @Component({
@@ -32,12 +32,13 @@ export class NewDishComponent implements OnInit {
     }
 
     if (this.formGroup.valid) {
-      const dish = new Dish(
-        this.formGroup.controls['name'].value,
-        [],
-        [],
-        this.formGroup.controls['amountOfPeople'].value
-      );
+      const dish: IDish = {
+        name: this.formGroup.controls['name'].value,
+        author: null,
+        ingredients: [],
+        instructions: [],
+        amountOfPeople: this.formGroup.controls['amountOfPeople'].value
+      };
 
       this.dishService.postDish(dish).subscribe(() => {
         this.message.create('success', `Successfully added ${dish.name}!`)
@@ -47,5 +48,4 @@ export class NewDishComponent implements OnInit {
       });
     }
   }
-
 }
