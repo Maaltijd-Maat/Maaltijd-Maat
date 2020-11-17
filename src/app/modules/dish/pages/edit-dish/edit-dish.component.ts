@@ -43,7 +43,6 @@ export class EditDishComponent {
     if (this.formGroup.valid) {
       const dish: IDish = {
         name: this.formGroup.controls['name'].value,
-        author: this.dish.author,
         ingredients: [],
         instructions: [],
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value

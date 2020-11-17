@@ -33,7 +33,7 @@
       <tbody>
       <tr *ngFor="let dish of headerTable.data">
         <td>{{ dish['name'] }}</td>
-        <td *ngIf="dish['author']">{{ dish['author']['firstname'] }} {{ dish['author']['lastname'] }}</td>
+        <td>{{ dish['author']!['firstname'] }} {{ dish['author']!['lastname'] }}</td>
         <td><a [routerLink]="['edit', dish['id']]"><i nz-icon nzType="edit" nzTheme="outline"></i> Edit</a></td>
       </tr>
       </tbody>
