@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       this.authenticateService.authenticateUser(credentials).then(
         (res) => {
           this.alertMessage = 'success';
-          this.router.navigate(['/dishes']);
+          this.router.navigate(['dishes']);
           this.isLoading = false;
           setTimeout(() => {
             this.alertMessage = "";
@@ -54,5 +54,6 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+    this.isLoading = false;
   }
 }

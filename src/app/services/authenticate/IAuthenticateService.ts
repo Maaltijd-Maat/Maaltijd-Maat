@@ -8,4 +8,11 @@ export interface IAuthenticateService {
    * @return authentication token for further use of the backend calls.
    */
   authenticateUser(credentials: ICredentials): void;
+
+  /**
+   * Checks if the user is authenticated
+   *
+   * @return true if the token is valid else it will be false.
+   */
+  isAuthenticated(): boolean;
 }

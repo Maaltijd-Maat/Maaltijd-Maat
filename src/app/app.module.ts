@@ -17,8 +17,13 @@ import { registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
 import { MenuComponent } from './views/menu/menu.component';
 import {NzDropDownModule} from 'ng-zorro-antd';
+import {JwtModule} from '@auth0/angular-jwt';
 
 registerLocaleData(nl);
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ registerLocaleData(nl);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzDropDownModule
+    NzDropDownModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      },
+    }),
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticateInterceptor, multi: true }
