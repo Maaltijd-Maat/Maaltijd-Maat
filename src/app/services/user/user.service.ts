@@ -7,7 +7,6 @@ import {Observable, throwError} from 'rxjs';
 
 import { IUser } from '@models:/user';
 import {Credentials, ICredentials} from '@models:/credentials';
-import {IDish} from '@models:/dish';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +84,9 @@ export class UserService implements IUserService {
     });
   }
 
+  /**
+   * Gets all the user information with the token.
+   */
   getUserInformation(): Observable<IUser>{
     return this.http.get<IUser>(this.url + "/information");
   }

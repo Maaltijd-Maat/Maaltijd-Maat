@@ -1,40 +1,41 @@
 <div class="middle">
   <br>
   <form nz-form [nzLayout]="'horizontal'" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="form-head">
-    <h1 nz-typography>Login</h1>
-    <p>Create new dishes!</p>
-  </div>
-  <div class="alert">
-    <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success you are authenticated!" nzShowIcon>{{alertMessage}}</nz-alert>
-    <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error something went wrong.." nzShowIcon>{{alertMessage}}</nz-alert>
-  </div>
-  <br>
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your username!">
-      <nz-input-group nzPrefixIcon="user">
-        <input type="text" nz-input formControlName="email" placeholder="email" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
-      <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input formControlName="password" placeholder="Password" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <div nz-row class="login-form-margin">
-    <div nz-col [nzSpan]="12">
-      <label nz-checkbox formControlName="remember">
-        <span>Remember me</span>
-      </label>
+    <div class="form-head">
+      <h1 nz-typography>Login</h1>
+      <p>Create new dishes!</p>
     </div>
-    <div nz-col [nzSpan]="12">
-      <a class="login-form-forgot" routerLink="/forgot">Forgot password</a>
+    <div class="alert">
+      <nz-alert nzType="success" *ngIf="alertMessage === 'success'" nzMessage="Success you are authenticated!" nzShowIcon>{{alertMessage}}</nz-alert>
+      <nz-alert nzType="error" *ngIf="alertMessage === 'error'" nzMessage="Error something went wrong.." nzShowIcon>{{alertMessage}}</nz-alert>
     </div>
-  </div>
-  <button nz-button [nzLoading]="isLoading" class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-  Or <a routerLink="/register"> register now! </a>
-</form>
+    <br>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="email" placeholder="email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row class="login-form-margin">
+      <div nz-col [nzSpan]="12">
+        <label nz-checkbox formControlName="remember">
+          <span>Remember me</span>
+        </label>
+      </div>
+      <div nz-col [nzSpan]="12">
+        <a class="login-form-forgot" routerLink="/forgot">Forgot password</a>
+      </div>
+    </div>
+    <button nz-button [nzLoading]="isLoading" class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    Or <a routerLink="/register"> register now! </a>
+  </form>
 </div>
+

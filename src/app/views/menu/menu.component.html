@@ -45,7 +45,7 @@
         </span>
           <a nz-dropdown class="profile-dropdown" [nzDropdownMenu]="menu">
             <i nz-icon nzType="user" nzTheme="outline"></i>
-            Wouter Verdegaal
+            {{username}}
             <i nz-icon nzType="down"></i>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -57,10 +57,12 @@
           </nz-dropdown-menu>
       </div>
     </nz-header>
-    <nz-content>
-      <div>
-        <router-outlet></router-outlet>
-      </div>
-    </nz-content>
+     <nz-layout>
+      <nz-content>
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+    </nz-layout>
   </nz-layout>
 </nz-layout>

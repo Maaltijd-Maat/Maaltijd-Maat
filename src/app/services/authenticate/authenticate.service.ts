@@ -5,17 +5,30 @@ import { HttpClient } from '@angular/common/http';
 import { IAuthenticateService } from '@services/authenticate/IAuthenticateService';
 import { ICredentials } from '@models:/credentials';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import {CanActivate, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticateService implements IAuthenticateService {
+export class AuthenticateService implements IAuthenticateService, CanActivate {
 
   private readonly endpoint: string = '/authenticate';
   private readonly url: string = environment.apiUrl + this.endpoint;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService, public router: Router) {
     this.http = http;
+  }
+
+  /**
+   * If user is authenticate let them pass otherwise go to login.
+   */
+  canActivate(): boolean {
+    if (!this.isAuthenticated()) {
+      this.router.navigate(['login']);
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -38,20 +51,10 @@ export class AuthenticateService implements IAuthenticateService {
   }
 
   /**
-   * Checks the token validity stored in the local storage.
+   * Checks if the token is not expired by decoding the claim.
    */
-  checkTokenValidation(){
-    return new Promise((resolve, reject) => {
-      this.http
-        .get(this.url + "/status", { responseType: 'text' })
-        .pipe(catchError((err: Response) => {
-          reject((err.statusText));
-          return throwError(err);
-        }))
-        .subscribe(response => {
-        resolve(response);
-      });
-    });
+  public isAuthenticated(): boolean{
+    return !this.jwtHelper.isTokenExpired(this.getToken());
   }
 
   /**
