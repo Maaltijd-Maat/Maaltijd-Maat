@@ -1,11 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { IDish } from '@models:/dish';
 import { IMeal } from '@models:/meal.model';
 import { IMealService } from '@services/meal/meal.service.interface';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
-export class mealService implements IMealService {
+@Injectable({
+  providedIn: 'root'
+})
+export class MealService implements IMealService {
   private readonly endpoint: string = '/meal';
   private readonly url: string = environment.apiUrl + this.endpoint;
 
@@ -24,8 +28,8 @@ export class mealService implements IMealService {
     return this.http.get<IMeal>(url);
   }
 
-  public getMeals(): Observable<IMeal> {
-    return this.http.get<IMeal>(this.url);
+  public getMeals(): Observable<IMeal[]> {
+    return this.http.get<IMeal[]>(this.url);
   }
 
   public suggestDish(dish: IDish): void {

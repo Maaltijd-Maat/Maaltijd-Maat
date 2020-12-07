@@ -7,7 +7,7 @@ export interface IMealService {
 
   getMeal(id:  string): Observable<IMeal>;
 
-  getMeals(): Observable<IMeal>;
+  getMeals(): Observable<IMeal[]>;
 
   suggestDish(dish: IDish): void;
 }
