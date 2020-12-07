@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AuthenticateInterceptor } from '@services/authenticate/authenticate.interceptor';
+import { DashboardLayoutComponent } from './_layout/dashboard-layout.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,8 @@ registerLocaleData(nl);
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    DashboardLayoutComponent
   ],
   imports: [
     BrowserModule,
