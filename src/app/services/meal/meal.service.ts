@@ -32,6 +32,6 @@ export class MealService implements IMealService {
     return this.http.get<IMeal[]>(this.url);
   }
 
-  public suggestDish(dish: IDish): void {
+  public suggestDish(mealId: string, dish: IDish): void {
   }
 }
