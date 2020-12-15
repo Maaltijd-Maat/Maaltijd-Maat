@@ -4,12 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MealService } from '@services/meal/meal.service';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { IconsProviderModule } from '../../icons-provider.module';
+import { MealSharedService } from './meal.shared.service';
 import { MealsRoutingModule } from './meals-routing.module';
-import { MealsComponent } from './pages/groups/meals.component';
+import { MealsComponent } from './pages/meals/meals.component';
+import { NewMealComponent } from './pages/new-meal/new-meal.component';
 
 @NgModule({
   declarations: [
-    MealsComponent
+    MealsComponent,
+    NewMealComponent
   ],
   exports: [],
   imports: [
@@ -20,7 +23,8 @@ import { MealsComponent } from './pages/groups/meals.component';
     MealsRoutingModule
   ],
   providers: [
-    MealService
+    MealService,
+    MealSharedService
   ]
 })
 export class MealsModule {}
