@@ -3,9 +3,6 @@
   (nzOnCancel)="closeModal()"
   nzTitle="New Meal">
   <form nz-form [nzLayout]="'vertical'" [formGroup]="formGroup">
-
-    <div>{{formGroup.valid}}</div>
-
     <nz-form-item>
       <nz-form-label nzFor="group">Group</nz-form-label>
       <nz-form-control nzErrorTip="Please select a group!">
