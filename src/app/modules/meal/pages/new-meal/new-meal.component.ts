@@ -1,31 +1,40 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Location} from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { IGroup } from '@models:/Group';
+import { IMeal, ICreateMeal } from '@models:/meal.model';
+import { GroupService } from '@services/group/group.service';
+import { MealService } from '@services/meal/meal.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { MealSharedService } from '../../meal.shared.service';
 
 @Component({
   selector: 'app-new-meal',
   templateUrl: './new-meal.component.html',
   styleUrls: ['./new-meal.component.scss']
 })
-export class NewMealComponent {
-  @Input()  isVisible: boolean = false;
+export class NewMealComponent implements OnInit {
+  @Input() isVisible: boolean = false;
   @Output() isVisibleChange = new EventEmitter<boolean>();
 
   isLoading: boolean = false;
   formGroup!: FormGroup;
 
-  groups!: IGroup[];
+  groups: IGroup[] = [];
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, private message: NzMessageService) {
-    this.route.data.subscribe((data) => {
-      this.groups = data.groups;
-    });
-
+  constructor(private fb: FormBuilder, private groupService: GroupService,
+              private mealService: MealService, private message: NzMessageService,
+              private sharedMealService: MealSharedService) {
     this.formGroup = this.fb.group({
-      date: [null, [Validators.required]]
+      group: [null, [Validators.required]],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]],
+      description: [""]
+    });
+  }
+
+  public ngOnInit(): void {
+    this.groupService.getGroups().subscribe(groups => {
+      this.groups = groups;
     });
   }
 
@@ -33,7 +42,31 @@ export class NewMealComponent {
    * Creates a new meal
    */
   createMeal(): void {
+    for (const i in this.formGroup.controls) {
+      this.formGroup.controls[i].markAsDirty();
+      this.formGroup.controls[i].updateValueAndValidity();
+    }
 
+    if (this.formGroup.valid) {
+      console.log(this.formGroup.controls)
+      this.isLoading = true;
+      const postMeal: ICreateMeal = {
+        groupId: this.formGroup.controls['group'].value,
+        startDate: this.formGroup.controls['startDate'].value,
+        endDate: this.formGroup.controls['endDate'].value,
+        description: this.formGroup.controls['description'].value
+      };
+
+      this.mealService.createMeal(postMeal).subscribe((meal: IMeal) => {
+        this.message.create('success', `Successfully created a new meal for ${meal.plannedFor}!`);
+        this.sharedMealService.emitCreate(meal.id)!;
+        this.isLoading = false;
+        this.closeModal();
+      }, error => {
+        this.isLoading = false;
+        // TODO: Add convenient way to present errors at the frontend.
+      });
+    }
   }
 
   closeModal(): void {

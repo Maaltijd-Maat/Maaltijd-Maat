@@ -1,15 +1,14 @@
 import { IDish } from '@models:/dish';
-import { IMeal } from '@models:/meal.model';
+import { IMeal, ICreateMeal } from '@models:/meal.model';
 import { Observable } from 'rxjs';
 
 export interface IMealService {
   /**
    * Creates a new meal from group ID and planned for date.
-   * @param groupId the ID of the group from which a new meal is scheduled
-   * @param plannedFor the scheduled date for the new meal
+   * @param meal the meal that needs to be created
    * @return the created meal as observable
    */
-  createMeal(groupId: String, plannedFor: Date): Observable<IMeal>;
+  createMeal(meal: ICreateMeal): Observable<IMeal>;
 
   /**
    * Retrieve meal by ID if meal is found.
