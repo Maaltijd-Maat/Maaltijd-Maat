@@ -25,6 +25,7 @@ export class NewMealComponent implements OnInit {
               private mealService: MealService, private message: NzMessageService,
               private sharedMealService: MealSharedService) {
     this.formGroup = this.fb.group({
+      title: ["", [Validators.required]],
       group: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
@@ -51,14 +52,15 @@ export class NewMealComponent implements OnInit {
       console.log(this.formGroup.controls)
       this.isLoading = true;
       const postMeal: ICreateMeal = {
+        title: this.formGroup.controls['title'].value,
         groupId: this.formGroup.controls['group'].value,
-        startDate: this.formGroup.controls['startDate'].value,
-        endDate: this.formGroup.controls['endDate'].value,
+        start: this.formGroup.controls['startDate'].value,
+        end: this.formGroup.controls['endDate'].value,
         description: this.formGroup.controls['description'].value
       };
 
       this.mealService.createMeal(postMeal).subscribe((meal: IMeal) => {
-        this.message.create('success', `Successfully created a new meal for ${meal.plannedFor}!`);
+        this.message.create('success', `Successfully created a new meal for ${meal.start}!`);
         this.sharedMealService.emitCreate(meal.id)!;
         this.isLoading = false;
         this.closeModal();

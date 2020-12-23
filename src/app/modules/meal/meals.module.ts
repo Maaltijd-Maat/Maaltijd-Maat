@@ -9,6 +9,9 @@ import { MealsRoutingModule } from './meals-routing.module';
 import { MealsComponent } from './pages/meals/meals.component';
 import { NewMealComponent } from './pages/new-meal/new-meal.component';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 @NgModule({
   declarations: [
     MealsComponent,
@@ -20,7 +23,8 @@ import { NewMealComponent } from './pages/new-meal/new-meal.component';
     NgZorroAntdModule,
     IconsProviderModule,
     ReactiveFormsModule,
-    MealsRoutingModule
+    MealsRoutingModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [
     MealService,

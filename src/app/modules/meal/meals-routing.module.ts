@@ -4,7 +4,7 @@ import { MealsComponent } from './pages/meals/meals.component';
 import { MealsResolver } from './pages/meals/meals.resolver';
 
 const routes: Routes = [
-  { path: '', component: MealsComponent, resolve: { groups: MealsResolver } }
+  { path: '', component: MealsComponent, resolve: { meals: MealsResolver } }
 ];
 
 @NgModule({
