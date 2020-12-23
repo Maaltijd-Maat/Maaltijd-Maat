@@ -40,6 +40,7 @@ export class MealsComponent {
   }
 
   private refreshMeals(): void {
+    console.log(this.mealService.getMeals());
     this.mealService.getMeals().subscribe(meals => {
       this.meals = meals;
     });

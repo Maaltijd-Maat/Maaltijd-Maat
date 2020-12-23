@@ -17,7 +17,6 @@ export class MealService implements IMealService {
   }
 
   public createMeal(meal: ICreateMeal): Observable<IMeal> {
-    console.log(meal);
     return this.http.post<IMeal>(this.url, meal);
   }
 

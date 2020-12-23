@@ -4,15 +4,18 @@ import { IUser } from '@models:/user';
 
 export interface IMeal {
   readonly id: string;
-  plannedFor: Date;
+  title: string;
+  start: Date;
+  end: Date;
   readonly group: IGroup;
   readonly createdBy: IUser;
   readonly suggestions: IMealSuggestion[];
 }
 
 export interface ICreateMeal {
+  title: string;
   groupId: string;
-  startDate: Date;
-  endDate: Date;
+  start: Date;
+  end: Date;
   description: string;
 }

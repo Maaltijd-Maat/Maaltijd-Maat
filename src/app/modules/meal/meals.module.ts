@@ -8,11 +8,13 @@ import { MealSharedService } from './meal.shared.service';
 import { MealsRoutingModule } from './meals-routing.module';
 import { MealsComponent } from './pages/meals/meals.component';
 import { NewMealComponent } from './pages/new-meal/new-meal.component';
+import {MealComponent} from './pages/meal/meal.component';
 
 @NgModule({
   declarations: [
     MealsComponent,
-    NewMealComponent
+    NewMealComponent,
+    MealComponent
   ],
   exports: [],
   imports: [

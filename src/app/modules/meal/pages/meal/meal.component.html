@@ -1,0 +1,80 @@
+<nz-page-header [nzGhost]="false" class="site-page-header" nzBackIcon nzTitle="Meal"
+                nzSubtitle="Suggest dishes for this appointment and look at the suggestions.">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+    <nz-breadcrumb-item><a routerLink="../">Meals</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>Meal</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
+<div class="content">
+
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Information</h4>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzFlex="left">
+        <img nz-image width="200px" height="200px"
+          nzSrc="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURExUYHSggGBolGxMTITEhJTU3Li4uFx8zODMsNygtLjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAMIBAwMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAQIDBAf/xAAtEAEBAAADBAkEAwEAAAAAAAAAAQIDERRRkaETITEyQVJhcbEEEoHRIrLhcv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6dI1CRqARdCNQCRSKBFAAFAAABQQUBBQEFAQAEFARNFAZSxqwBjRGqzYDLNjdQGNEa0AaaSNQDRqJGgFABQABQQUAAAAAAAAAABBUARQESqAyljVSgwzW7EoMKANRqMxoFjUSKAqKACgAAAAAAAAAAAAAAAAgqAIoCIqUGazW2aDOgoCxpI0CwCAoACgAAAAAAAAAAAAAAAAAACAAlFQEZrVSgwoAsaiRYCqigAoAAAAAAAOeLNkunXb46A6Dl003XkdNN15A6jl003XkdNN15A6jn009XQAAAAAABFQBFQCs1pAZRQFjUZagCooCooAAAAAADhlSfdj107cXb/1XdwyevFmT1xfNBOmnkmm/q14aO0wzdOEcOgvppvejDNJJu6gPtm6cIfbN04R587O1/jhvpbPiGTm6dV7PD0B0z5PtvVO2eHrG8vuz2jH1Hcvvh+Y1ld2ewNgAAAAAIqAIqAIqAgACxFgKqKAqKAAAAAAA8/0/ex+9/tXoebKmtzZO3XF80DPztf44b72fEYxZ2KzTjfGw2fHunE2fHunEHMdNnx7pxNnx7pxBrXXKvpZPxrHfJ7uH2ccWC4cvFL5pecdsnu4fYGwAAAAAEVAEqpQKi1KCAARYkWAqooCooAAAAAADhj+n1tsxaa9ddwHn2a+e8/2bNfPef7egB59mvnvP9mzXz3n+3oAefZt+O38f674ZpJJ4KAAAAAAAJVQBKqAVFqAmqCAsaYjQNBAFABQAAAAAAAAAAAAAAAAAAAEAEoUBKlVmgIAEajDUBqKy0AqKAqAKAAAAAAAAAAAAAAAAioACAFEAZq1mggmoBGoxGoDcqxiNQGhIoKIoCoAoAAAAAAAAAAAAgACAAAiVWaBWVrNA1EARqMStQGo1GIsBuKzF1BoSKCiAKAAqAKJqAomoCiAKgACAAACCWgWs0qagVmlS0AZAI1ABVUBWogDRABQAAAUAAAAAAAEAAQAAAREAKzQBGcSAM0AH/9k="/>
+      </div>
+      <div nz-col nzFlex="auto">
+        <p><i nz-icon nzType="calendar" nzTheme="outline"></i> {{this.meal.startDate}} - {{this.meal.endDate}}</p>
+        <p><i nz-icon nzType="user" nzTheme="outline"></i> {{this.meal.createdBy.firstname + ' ' + this.meal.createdBy.lastname}}</p>
+        <p>{{this.meal.description}}</p>
+      </div>
+    </div>
+  </nz-card>
+
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Suggestions</h4>
+      </div>
+    </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="8">
+          <nz-card nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <nz-card  nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+        </div>
+        <div nz-col [nzSpan]="8">
+          <nz-card nzTitle="Card title">
+            <p>Card content</p>
+          </nz-card>
+        </div>
+      </div>
+  </nz-card>
+
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Members of {{this.meal.group.name}}</h4>
+      </div>
+    </div>
+
+    <nz-table class="invitedTable" #headerTable [nzData]="this.meal.group.members!" [nzPageSize]="10" [nzShowPagination]="false">
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>E-mail</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of headerTable.data">
+        <td><nz-avatar nzIcon="user"></nz-avatar>{{user['firstname']}} {{user['lastname']}}</td>
+        <td>{{user['email']}}</td>
+        <td>Going</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+</div>
