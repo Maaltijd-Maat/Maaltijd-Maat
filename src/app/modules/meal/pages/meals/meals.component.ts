@@ -47,6 +47,6 @@ export class MealsComponent {
   }
 
   public isDateInMeals(date: Date): IMeal[] {
-    return this.meals.filter(meal => meal.start == date);
+    return this.meals.filter(meal => meal.startDate == date);
   }
 }

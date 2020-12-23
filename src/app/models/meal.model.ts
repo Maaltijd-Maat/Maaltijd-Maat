@@ -5,8 +5,9 @@ import { IUser } from '@models:/user';
 export interface IMeal {
   readonly id: string;
   title: string;
-  start: Date;
-  end: Date;
+  startDate: Date;
+  endDate: Date;
+  description: string;
   readonly group: IGroup;
   readonly createdBy: IUser;
   readonly suggestions: IMealSuggestion[];

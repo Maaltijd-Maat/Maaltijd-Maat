@@ -60,7 +60,7 @@ export class NewMealComponent implements OnInit {
       };
 
       this.mealService.createMeal(postMeal).subscribe((meal: IMeal) => {
-        this.message.create('success', `Successfully created a new meal for ${meal.start}!`);
+        this.message.create('success', `Successfully created a new meal for ${meal.startDate}!`);
         this.sharedMealService.emitCreate(meal.id)!;
         this.isLoading = false;
         this.closeModal();
