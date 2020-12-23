@@ -11,7 +11,10 @@
 
 <nz-card>
   <div class="card-inner">
-    <nz-calendar [(nzMode)]="mode"></nz-calendar>
+    <mwl-calendar-month-view
+      [events]="meals"
+      [viewDate]="viewDate">
+    </mwl-calendar-month-view>
   </div>
 </nz-card>
 

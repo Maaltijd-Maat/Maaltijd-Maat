@@ -4,13 +4,18 @@
   nzTitle="New Meal">
   <form nz-form [nzLayout]="'vertical'" [formGroup]="formGroup">
     <nz-form-item>
+      <nz-form-label nzFor="title">Title</nz-form-label>
+      <nz-form-control nzErrorTip="Please define a title!">
+        <input nz-input placeholder="Title" formControlName="title"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
       <nz-form-label nzFor="group">Group</nz-form-label>
       <nz-form-control nzErrorTip="Please select a group!">
-        <nz-input-group>
-          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a group" formControlName="group">
-            <nz-option *ngFor="let group of groups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
-          </nz-select>
-        </nz-input-group>
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a group" formControlName="group">
+          <nz-option *ngFor="let group of groups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
+        </nz-select>
       </nz-form-control>
     </nz-form-item>
 
@@ -19,13 +24,11 @@
         <nz-form-item>
           <nz-form-label nzFor="startDate">Start Date</nz-form-label>
           <nz-form-control nzErrorTip="Please select a start date!">
-            <nz-input-group>
-              <nz-date-picker
-                nzShowTime
-                formControlName="startDate"
-                nzFormat="yyyy-MM-dd HH:mm"
-              ></nz-date-picker>
-            </nz-input-group>
+            <nz-date-picker
+              nzShowTime
+              formControlName="startDate"
+              nzFormat="yyyy-MM-dd HH:mm"
+            ></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -34,13 +37,11 @@
         <nz-form-item>
           <nz-form-label nzFor="endDate">End Date</nz-form-label>
           <nz-form-control nzErrorTip="Please select an end date!">
-            <nz-input-group>
-              <nz-date-picker
-                nzShowTime
-                formControlName="endDate"
-                nzFormat="yyyy-MM-dd HH:mm"
-              ></nz-date-picker>
-            </nz-input-group>
+            <nz-date-picker
+              nzShowTime
+              formControlName="endDate"
+              nzFormat="yyyy-MM-dd HH:mm"
+            ></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -49,7 +50,7 @@
     <nz-form-item>
       <nz-form-label nzFor="description">Description</nz-form-label>
       <nz-form-control>
-            <textarea rows="4" nz-input formControlName="description"></textarea>
+        <textarea rows="4" nz-input formControlName="description"></textarea>
       </nz-form-control>
     </nz-form-item>
   </form>

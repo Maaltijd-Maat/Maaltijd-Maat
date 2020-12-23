@@ -12,10 +12,9 @@ import { MealSharedService } from '../../meal.shared.service';
 })
 export class MealsComponent {
   public isNewMealModalVisible: boolean = false;
-  protected meals!: IMeal[];
+  public meals: IMeal[] = [];
 
-  date = new Date();
-  mode: NzCalendarMode = 'month';
+  viewDate: Date = new Date();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -24,6 +23,7 @@ export class MealsComponent {
     // Retrieve list of meals from the meals resolver
     this.route.data.subscribe((data) => {
       this.meals = data.meals;
+      console.log(this.meals);
     });
 
     this.mealSharedService.createMealEmitted$.subscribe(() => this.refreshMeals());
@@ -44,5 +44,9 @@ export class MealsComponent {
     this.mealService.getMeals().subscribe(meals => {
       this.meals = meals;
     });
+  }
+
+  public isDateInMeals(date: Date): IMeal[] {
+    return this.meals.filter(meal => meal.start == date);
   }
 }

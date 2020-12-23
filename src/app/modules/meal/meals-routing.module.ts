@@ -6,7 +6,7 @@ import { MealComponent } from './pages/meal/meal.component';
 import {MealResolver} from './pages/meal/meal.resolver';
 
 const routes: Routes = [
-  { path: '', component: MealsComponent, resolve: { groups: MealsResolver } },
+  { path: '', component: MealsComponent, resolve: { meals: MealsResolver } },
   { path: 'meal/:id', component: MealComponent, resolve: { meal: MealResolver }}
 
 ];
