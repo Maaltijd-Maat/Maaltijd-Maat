@@ -4,17 +4,26 @@
     <nz-breadcrumb-item>Meals</nz-breadcrumb-item>
   </nz-breadcrumb>
   <nz-page-header-extra>
-    <button nz-button><i nz-icon nzType="reload"></i>Refresh</button>
-    <button nz-button (click)="onNewMeal()" nzType="primary"><i nz-icon nzType="plus"></i>New Meal</button>
+    <button nz-button><em nz-icon nzType="reload"></em>Refresh</button>
+    <button nz-button (click)="onNewMeal()" nzType="primary"><em nz-icon nzType="plus"></em>New Meal</button>
   </nz-page-header-extra>
 </nz-page-header>
 
 <nz-card>
-  <div class="card-inner">
-    <mwl-calendar-month-view
-      [events]="meals"
-      [viewDate]="viewDate">
-    </mwl-calendar-month-view>
+  <div [ngSwitch]="view">
+    <div class="card-inner">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [events]="meals"
+        [viewDate]="viewDate">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="meals"
+      >
+      </mwl-calendar-week-view>
+    </div>
   </div>
 </nz-card>
 

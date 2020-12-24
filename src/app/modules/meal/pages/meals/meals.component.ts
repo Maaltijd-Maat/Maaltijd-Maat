@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMeal } from '@models:/meal.model';
 import { MealService } from '@services/meal/meal.service';
+import { CalendarView } from 'angular-calendar';
 import { MealSharedService } from '../../meal.shared.service';
 
 @Component({
@@ -14,6 +15,8 @@ export class MealsComponent {
   public meals: IMeal[] = [];
 
   viewDate: Date = new Date();
+  CalendarView = CalendarView;
+  view: CalendarView = CalendarView.Week;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
