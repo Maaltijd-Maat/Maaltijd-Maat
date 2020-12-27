@@ -49,7 +49,6 @@ export class NewMealComponent implements OnInit {
     }
 
     if (this.formGroup.valid) {
-      console.log(this.formGroup.controls)
       this.isLoading = true;
       const postMeal: ICreateMeal = {
         title: this.formGroup.controls['title'].value,

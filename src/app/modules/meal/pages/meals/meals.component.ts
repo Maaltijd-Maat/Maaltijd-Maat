@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMeal } from '@models:/meal.model';
 import { MealService } from '@services/meal/meal.service';
-import { NzCalendarMode } from 'ng-zorro-antd';
 import { MealSharedService } from '../../meal.shared.service';
 
 @Component({
@@ -23,7 +22,6 @@ export class MealsComponent {
     // Retrieve list of meals from the meals resolver
     this.route.data.subscribe((data) => {
       this.meals = data.meals;
-      console.log(this.meals);
     });
 
     this.mealSharedService.createMealEmitted$.subscribe(() => this.refreshMeals());
