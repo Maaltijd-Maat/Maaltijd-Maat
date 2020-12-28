@@ -12,12 +12,14 @@ import {MealComponent} from './pages/meal/meal.component';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {NewSuggestionComponent} from "./pages/new-suggestion/new-suggestion.component";
 
 @NgModule({
   declarations: [
     MealsComponent,
     NewMealComponent,
-    MealComponent
+    MealComponent,
+    NewSuggestionComponent
   ],
   exports: [],
   imports: [

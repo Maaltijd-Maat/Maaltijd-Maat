@@ -8,7 +8,6 @@
 </nz-page-header>
 
 <div class="content">
-
   <nz-card>
     <div nz-row>
       <div nz-col nzFlex="auto">
@@ -51,6 +50,11 @@
           </nz-card>
         </div>
       </div>
+    <nz-row>
+      <nz-col [nzSpan]="12">
+        <button nz-button (click)="onNewSuggestion()" nzType="primary"><i nz-icon nzType="plus"></i>New Suggestion</button>
+      </nz-col>
+    </nz-row>
   </nz-card>
 
   <nz-card>
@@ -77,4 +81,5 @@
       </tbody>
     </nz-table>
   </nz-card>
+  <app-new-suggestion [(isVisible)]="isNewSuggestionModalVisible"></app-new-suggestion>
 </div>

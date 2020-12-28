@@ -1,5 +1,5 @@
 import { IGroup } from '@models:/Group';
-import { IMealSuggestion } from '@models:/mealSuggestion';
+import { ISuggestion } from '@models:/suggestion';
 import { IUser } from '@models:/user';
 
 export interface IMeal {
@@ -7,16 +7,17 @@ export interface IMeal {
   title: string;
   startDate: Date;
   endDate: Date;
+  start: Date;
   description: string;
   readonly group: IGroup;
   readonly createdBy: IUser;
-  readonly suggestions: IMealSuggestion[];
+  suggestions: ISuggestion[];
 }
 
 export interface ICreateMeal {
   title: string;
   groupId: string;
-  start: Date;
-  end: Date;
+  startDate: Date;
+  endDate: Date;
   description: string;
 }

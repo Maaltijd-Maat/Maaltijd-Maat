@@ -12,6 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 export class MealComponent implements OnInit {
   formGroup!: FormGroup;
   meal!: IMeal;
+  public isNewSuggestionModalVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private message: NzMessageService) {
     // Retrieve list of meals from the meals resolver
@@ -38,5 +39,9 @@ export class MealComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.meal);
+  }
+
+  public onNewSuggestion(): void {
+    this.isNewSuggestionModalVisible = true;
   }
 }

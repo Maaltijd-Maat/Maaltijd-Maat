@@ -53,8 +53,8 @@ export class NewMealComponent implements OnInit {
       const postMeal: ICreateMeal = {
         title: this.formGroup.controls['title'].value,
         groupId: this.formGroup.controls['group'].value,
-        start: this.formGroup.controls['startDate'].value,
-        end: this.formGroup.controls['endDate'].value,
+        startDate: this.formGroup.controls['startDate'].value,
+        endDate: this.formGroup.controls['endDate'].value,
         description: this.formGroup.controls['description'].value
       };
 

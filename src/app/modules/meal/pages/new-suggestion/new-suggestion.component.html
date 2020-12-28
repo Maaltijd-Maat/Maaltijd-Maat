@@ -1,0 +1,38 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="closeModal()"
+  nzTitle="New suggestion">
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="formGroup">
+    <nz-form-item>
+      <nz-form-label nzFor="title">Title</nz-form-label>
+      <nz-form-control nzErrorTip="Please define a title!">
+        <input nz-input placeholder="Title" formControlName="title"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="dish">Dish</nz-form-label>
+      <nz-form-control nzErrorTip="Please select a dish or fill in the description!">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a dish" formControlName="dish">
+          <nz-option *ngFor="let dish of dishes" [nzValue]="dish.id" [nzLabel]="dish.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Description</nz-form-label>
+      <nz-form-control>
+        <textarea rows="4" nz-input formControlName="description"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div *nzModalFooter>
+    <button [disabled]="!formGroup.valid"
+            [nzLoading]="isLoading"
+            (click)="createSuggestion()"
+            nz-button
+            nzType="primary">
+      Create Meal
+    </button>
+  </div>
+</nz-modal>

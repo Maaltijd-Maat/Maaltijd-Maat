@@ -1,6 +1,6 @@
-import { IDish } from '@models:/dish';
 import { IMeal, ICreateMeal } from '@models:/meal.model';
 import { Observable } from 'rxjs';
+import {ISuggestion} from "@models:/suggestion";
 
 export interface IMealService {
   /**
@@ -26,8 +26,10 @@ export interface IMealService {
 
   /**
    * Suggest a dish to a meal.
-   * @param mealId the ID of the group the meal is planned for
-   * @param dish the suggested dish
+   * @param meal
+   * @param suggestion the suggested object with information
    */
-  suggestDish(mealId: string, dish: IDish): void;
+  suggestDish(meal: IMeal, suggestion: ISuggestion): void;
+
+  updateMeal(meal: IMeal): Observable<IMeal>;
 }

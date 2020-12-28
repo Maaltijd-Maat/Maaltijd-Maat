@@ -6,6 +6,8 @@ import { IMealService } from '@services/meal/meal.service.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import {ISuggestion} from "@models:/suggestion";
+import {IGroup} from "@models:/Group";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +27,8 @@ export class MealService implements IMealService {
     const url = `${this.url}/${id}`;
     return this.http.get<IMeal>(url).pipe(
       map(meal => {
-        meal.start = new Date(meal.start);
-        meal.end = new Date(meal.end);
+        meal.startDate = new Date(meal.startDate);
+        meal.endDate = new Date(meal.endDate);
         return meal;
       })
     );
@@ -36,14 +38,27 @@ export class MealService implements IMealService {
     return this.http.get<IMeal[]>(this.url).pipe(
       map(meals => {
         return meals.map(meal => {
-          meal.start = new Date(meal.start);
-          meal.end = new Date(meal.end);
+          meal.startDate = new Date(meal.startDate);
+          meal.endDate = new Date(meal.endDate);
           return meal;
         })
       })
     )
   }
 
-  public suggestDish(mealId: string, dish: IDish): void {
+  public updateMeal(meal: IMeal): Observable<IMeal> {
+    return this.http.put<IMeal>(this.url, meal);
+  }
+
+  public suggestDish(meal: IMeal, suggestion: ISuggestion): Observable<ISuggestion> {
+    let observable: Observable<ISuggestion> = this.http.post<ISuggestion>(this.url + "/suggestion", suggestion);
+    meal.suggestions = [];
+    meal.suggestions.push(suggestion);
+    this.updateMeal(meal).subscribe((meal: IMeal) => {
+
+    }, error => {
+
+    });
+    return observable;
   }
 }
