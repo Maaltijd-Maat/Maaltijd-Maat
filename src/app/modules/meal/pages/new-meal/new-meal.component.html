@@ -19,33 +19,13 @@
       </nz-form-control>
     </nz-form-item>
 
-    <div nz-row>
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label nzFor="startDate">Start Date</nz-form-label>
-          <nz-form-control nzErrorTip="Please select a start date!">
-            <nz-date-picker
-              nzShowTime
-              formControlName="startDate"
-              nzFormat="yyyy-MM-dd HH:mm"
-            ></nz-date-picker>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzSpan="12">
-        <nz-form-item>
-          <nz-form-label nzFor="endDate">End Date</nz-form-label>
-          <nz-form-control nzErrorTip="Please select an end date!">
-            <nz-date-picker
-              nzShowTime
-              formControlName="endDate"
-              nzFormat="yyyy-MM-dd HH:mm"
-            ></nz-date-picker>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
+    <nz-form-item>
+      <nz-form-label nzFor="date">Start Date</nz-form-label>
+      <nz-form-control nzErrorTip="Please select a start date!">
+        <nz-range-picker nzFormat="short" formControlName="date" [nzShowTime]="true">
+        </nz-range-picker>
+      </nz-form-control>
+    </nz-form-item>
 
     <nz-form-item>
       <nz-form-label nzFor="description">Description</nz-form-label>

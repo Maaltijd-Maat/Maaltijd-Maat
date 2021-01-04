@@ -18,8 +18,13 @@ export class MealService implements IMealService {
   }
 
   public createMeal(meal: ICreateMeal): Observable<IMeal> {
-    console.log(meal);
-    return this.http.post<IMeal>(this.url, meal);
+    return this.http.post<IMeal>(this.url, meal).pipe(
+      map(meal => {
+        meal.start = new Date(meal.start);
+        meal.end = new Date(meal.end);
+        return meal;
+      })
+    );
   }
 
   public getMeal(id: string): Observable<IMeal> {

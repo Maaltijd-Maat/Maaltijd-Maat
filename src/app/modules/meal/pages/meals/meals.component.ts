@@ -11,24 +11,32 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMeal } from '@models:/meal.model';
 import { MealService } from '@services/meal/meal.service';
-import { CalendarView } from 'angular-calendar';
+import { CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
 import { MealSharedService } from '../../meal.shared.service';
 import { differenceInMinutes, startOfDay, startOfHour } from 'date-fns';
+import { CustomEventTitleFormatter } from './event.provider';
 
 @Component({
   selector: 'app-meals',
   templateUrl: './meals.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./meals.component.scss']
+  styleUrls: ['./meals.component.scss'],
+  providers: [
+    {
+      provide: CalendarEventTitleFormatter,
+      useClass: CustomEventTitleFormatter
+    }
+  ]
 })
 export class MealsComponent implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLElement>;
 
-  public isNewMealModalVisible: boolean = false;
-  public meals: IMeal[] = [];
+  isNewMealModalVisible: boolean = false;
+  isLoading: boolean = false;
+  meals: IMeal[] = [];
 
-  viewDate: Date = new Date();
   CalendarView = CalendarView;
+  viewDate: Date = new Date();
   view: CalendarView = CalendarView.Week;
 
   constructor(@Inject(LOCALE_ID)
@@ -48,11 +56,11 @@ export class MealsComponent implements AfterViewInit {
     this.mealSharedService.deleteMealEmitted$.subscribe(() => this.refreshMeals());
   }
 
-  public onNewMeal(): void {
+  onNewMeal(): void {
     this.isNewMealModalVisible = true;
   }
 
-  public onRefreshMeals(): void {
+  onRefreshMeals(): void {
     this.refreshMeals();
   }
 
@@ -79,8 +87,11 @@ export class MealsComponent implements AfterViewInit {
   }
 
   private refreshMeals(): void {
+    this.isLoading = true;
     this.mealService.getMeals().subscribe(meals => {
       this.meals = meals;
+    }, error => {}, () => {
+      this.isLoading = false;
     });
   }
 }

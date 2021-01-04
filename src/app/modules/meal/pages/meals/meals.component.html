@@ -4,15 +4,16 @@
     <nz-breadcrumb-item>Meals</nz-breadcrumb-item>
   </nz-breadcrumb>
   <nz-page-header-extra>
-    <button nz-button><em nz-icon nzType="reload"></em>Refresh</button>
+    <button nz-button (click)="onRefreshMeals()" [nzLoading]="isLoading"><em nz-icon nzType="reload"></em>Refresh
+    </button>
     <button nz-button (click)="onNewMeal()" nzType="primary"><em nz-icon nzType="plus"></em>New Meal</button>
   </nz-page-header-extra>
 </nz-page-header>
 
 <nz-card>
-  <nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24 }">
+  <nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24 }" class="toolbar">
     <div nz-col nzFlex="auto">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle') : locale }}</h3>
     </div>
     <div nz-col>
       <nz-button-group>
@@ -35,7 +36,7 @@
 
 
   <div class="card-inner">
-      <div [ngSwitch]="view" class="scroll-container" #scrollContainer>
+    <div [ngSwitch]="view" class="scroll-container" #scrollContainer>
       <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
         [events]="meals"
