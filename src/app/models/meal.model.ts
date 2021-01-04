@@ -9,6 +9,7 @@ export interface IMeal {
   start: Date;
   end: Date;
   color: EventColor;
+  description: string;
   readonly group: IGroup;
   readonly createdBy: IUser;
   readonly suggestions: IMealSuggestion[];
