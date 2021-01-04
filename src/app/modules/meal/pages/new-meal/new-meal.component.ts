@@ -27,8 +27,7 @@ export class NewMealComponent implements OnInit {
     this.formGroup = this.fb.group({
       title: ["", [Validators.required]],
       group: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
-      endDate: [null, [Validators.required]],
+      date: [null, [Validators.required]],
       description: [""]
     });
   }
@@ -53,19 +52,19 @@ export class NewMealComponent implements OnInit {
       const postMeal: ICreateMeal = {
         title: this.formGroup.controls['title'].value,
         groupId: this.formGroup.controls['group'].value,
-        startDate: this.formGroup.controls['startDate'].value,
-        endDate: this.formGroup.controls['endDate'].value,
+        start: this.formGroup.controls['date'].value[0],
+        end: this.formGroup.controls['date'].value[1],
         description: this.formGroup.controls['description'].value
       };
 
       this.mealService.createMeal(postMeal).subscribe((meal: IMeal) => {
         this.message.create('success', `Successfully created a new meal for ${meal.startDate}!`);
         this.sharedMealService.emitCreate(meal.id)!;
-        this.isLoading = false;
         this.closeModal();
       }, error => {
+        this.message.create('error', `Something went wrong while creating a meal: ${error.error}!`);
+      }, () => {
         this.isLoading = false;
-        // TODO: Add convenient way to present errors at the frontend.
       });
     }
   }

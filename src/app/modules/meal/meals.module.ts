@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MealService } from '@services/meal/meal.service';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { IconsProviderModule } from '../../icons-provider.module';
@@ -28,7 +28,8 @@ import {NewSuggestionComponent} from "./pages/new-suggestion/new-suggestion.comp
     IconsProviderModule,
     ReactiveFormsModule,
     MealsRoutingModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    FormsModule
   ],
   providers: [
     MealService,

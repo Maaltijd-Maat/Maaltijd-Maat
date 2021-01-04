@@ -18,3 +18,12 @@
   text-overflow: ellipsis;
   font-size: 12px;
 }
+
+.scroll-container {
+  height: calc(100vh - 320px);
+  overflow-y: auto;
+}
+
+.toolbar {
+  padding-bottom: 16px;
+}
