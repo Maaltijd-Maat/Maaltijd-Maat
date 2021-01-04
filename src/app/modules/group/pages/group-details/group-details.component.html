@@ -1,5 +1,10 @@
 <div nz-col nzFlex="auto">
-  <h3 nz-typography>{{group.name}}</h3>
+
+    <h3 nz-typography>
+      <nz-badge [nzColor]="group.color"></nz-badge>
+      {{group.name}}
+    </h3>
+
   <h4 nz-typography>Settings</h4>
 </div>
 <form [nzNoColon]="false"

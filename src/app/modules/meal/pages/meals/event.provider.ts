@@ -10,18 +10,19 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   }
 
   month(meal: IMeal): string {
-    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> ${
+    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> - <b>${formatDate(meal.end, 'shortTime', this.locale)}</b> ${
       meal.title
     }`;
   }
 
   week(meal: IMeal): string {
-    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> ${meal.title}</b>` +
-      `<br>${meal.createdBy.firstname}`;
+    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> - <b>${formatDate(meal.end, 'shortTime', this.locale)}</b> ${
+      meal.title
+    }`;
   }
 
   day(meal: IMeal): string {
-    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> ${
+    return `<b>${formatDate(meal.start, 'shortTime', this.locale)}</b> - <b>${formatDate(meal.end, 'shortTime', this.locale)}</b> ${
       meal.title
     }`;
   }

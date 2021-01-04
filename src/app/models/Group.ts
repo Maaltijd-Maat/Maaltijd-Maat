@@ -5,4 +5,5 @@ export interface IGroup {
   name: string;
   readonly owner: IUser;
   readonly members: IUser[];
+  readonly color?: string;
 }
