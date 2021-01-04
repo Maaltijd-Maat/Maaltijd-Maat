@@ -6,20 +6,18 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <img src="./assets/hamburger-solid.svg" alt="logo"/>
         <h1>Maaltijd Maat</h1>
-      </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Meals" nzIcon="question-circle">
+      <li nz-submenu nzOpen nzTitle="Meals" nzIcon="calendar">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a [routerLink]="['meals']">Meals</a>
+            <a [routerLink]="['meals']">Overview</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Dishes" nzIcon="question-circle">
+      <li nz-submenu nzTitle="Dishes" nzIcon="solution">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['/', 'dishes']">Overview</a>
@@ -29,7 +27,7 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Groups" nzIcon="question-circle">
+      <li nz-submenu nzTitle="Groups" nzIcon="usergroup-add">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a [routerLink]="['groups']">Groups</a>
