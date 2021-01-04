@@ -2,6 +2,15 @@
   margin: 20px;
 }
 
+::ng-deep .ant-card-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card {
+  padding: 0 24px;
+}
+
 .events {
   list-style: none;
   margin: 0;
