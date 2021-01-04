@@ -59,7 +59,7 @@
   <tbody>
   <tr *ngFor="let user of headerTable.data">
     <td>
-      <nz-avatar nzIcon="user"></nz-avatar>{{user['firstname']}} {{user['lastname']}}</td>
+      <nz-avatar nzIcon="user" [style]="{'background-color': user['color']}"></nz-avatar>{{user['firstname']}} {{user['lastname']}}</td>
     <td>{{user['email']}}</td>
   </tr>
   </tbody>

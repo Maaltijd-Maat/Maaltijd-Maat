@@ -1,5 +1,6 @@
 export interface IUser {
   readonly id?: string;
+  readonly color?: string;
   firstname: string;
   lastname: string;
   email: string;
