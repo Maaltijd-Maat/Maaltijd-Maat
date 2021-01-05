@@ -59,6 +59,7 @@ export class NewSuggestionComponent implements OnInit{
     if (this.formGroup.valid){
       this.isLoading = true;
 
+      //Creating suggestion object
       const suggestion: ISuggestion = {
         title: this.formGroup.controls['title'].value,
         dish: new Dish(this.formGroup.controls['dish'].value, 0, [], [], ""),
@@ -66,10 +67,25 @@ export class NewSuggestionComponent implements OnInit{
         description: this.formGroup.controls['description'].value
       };
 
-      this.mealService.suggestDish(this.meal, suggestion).subscribe((suggestion: ISuggestion) => {
-        this.message.create('Success', 'Successfully created a new suggestion for this meal!');
-        this.isLoading = false;
-        this.closeModal();
+      //Add suggestion to the database
+      this.mealService.suggestDish(suggestion).subscribe((suggestion: ISuggestion) => {
+
+        //Convert string to date object
+        this.meal.start = new Date(this.meal.start);
+        this.meal.end = new Date(this.meal.end);
+
+        //Add new suggestion to suggestions list in meal object
+        if (this.meal.suggestions == null) this.meal.suggestions = [];
+        this.meal.suggestions.push(suggestion);
+
+        //Update meal with the new suggestion
+        this.mealService.updateMeal(this.meal).subscribe((meal: IMeal) => {
+          this.message.create('Success', 'Successfully created a new suggestion for this meal!');
+          this.isLoading = false;
+          this.closeModal();
+        }, error => {
+          this.isLoading = false;
+        });
       }, error => {
         this.isLoading = false;
         // TODO: Add convenient way to present errors at the frontend.

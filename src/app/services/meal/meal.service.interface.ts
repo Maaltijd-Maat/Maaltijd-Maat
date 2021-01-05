@@ -29,7 +29,11 @@ export interface IMealService {
    * @param meal
    * @param suggestion the suggested object with information
    */
-  suggestDish(meal: IMeal, suggestion: ISuggestion): void;
+  suggestDish(suggestion: ISuggestion): void;
 
+  /**
+   * Update the meal with new information.
+   * @param meal
+   */
   updateMeal(meal: IMeal): Observable<IMeal>;
 }

@@ -2,9 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IUser, User} from '@models:/user';
-import {AuthenticateService} from '@services/authenticate/authenticate.service';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {UserService} from '@services/user/user.service';
 
 @Component({

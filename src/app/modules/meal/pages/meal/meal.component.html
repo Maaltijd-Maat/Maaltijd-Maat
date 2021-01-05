@@ -15,12 +15,8 @@
       </div>
     </div>
     <div nz-row>
-      <div nz-col nzFlex="left">
-        <img nz-image width="200px" height="200px"
-          nzSrc="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURExUYHSggGBolGxMTITEhJTU3Li4uFx8zODMsNygtLjcBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAMIBAwMBIgACEQEDEQH/xAAZAAEBAQEBAQAAAAAAAAAAAAAAAQIDBAf/xAAtEAEBAAADBAkEAwEAAAAAAAAAAQIDERRRkaETITEyQVJhcbEEEoHRIrLhcv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6dI1CRqARdCNQCRSKBFAAFAAABQQUBBQEFAQAEFARNFAZSxqwBjRGqzYDLNjdQGNEa0AaaSNQDRqJGgFABQABQQUAAAAAAAAAABBUARQESqAyljVSgwzW7EoMKANRqMxoFjUSKAqKACgAAAAAAAAAAAAAAAAgqAIoCIqUGazW2aDOgoCxpI0CwCAoACgAAAAAAAAAAAAAAAAAACAAlFQEZrVSgwoAsaiRYCqigAoAAAAAAAOeLNkunXb46A6Dl003XkdNN15A6jl003XkdNN15A6jn009XQAAAAAABFQBFQCs1pAZRQFjUZagCooCooAAAAAADhlSfdj107cXb/1XdwyevFmT1xfNBOmnkmm/q14aO0wzdOEcOgvppvejDNJJu6gPtm6cIfbN04R587O1/jhvpbPiGTm6dV7PD0B0z5PtvVO2eHrG8vuz2jH1Hcvvh+Y1ld2ewNgAAAAAIqAIqAIqAgACxFgKqKAqKAAAAAAA8/0/ex+9/tXoebKmtzZO3XF80DPztf44b72fEYxZ2KzTjfGw2fHunE2fHunEHMdNnx7pxNnx7pxBrXXKvpZPxrHfJ7uH2ccWC4cvFL5pecdsnu4fYGwAAAAAEVAEqpQKi1KCAARYkWAqooCooAAAAAADhj+n1tsxaa9ddwHn2a+e8/2bNfPef7egB59mvnvP9mzXz3n+3oAefZt+O38f674ZpJJ4KAAAAAAAJVQBKqAVFqAmqCAsaYjQNBAFABQAAAAAAAAAAAAAAAAAAAEAEoUBKlVmgIAEajDUBqKy0AqKAqAKAAAAAAAAAAAAAAAAioACAFEAZq1mggmoBGoxGoDcqxiNQGhIoKIoCoAoAAAAAAAAAAAAgACAAAiVWaBWVrNA1EARqMStQGo1GIsBuKzF1BoSKCiAKAAqAKJqAomoCiAKgACAAACCWgWs0qagVmlS0AZAI1ABVUBWogDRABQAAAUAAAAAAAEAAQAAAREAKzQBGcSAM0AH/9k="/>
-      </div>
       <div class="information" nz-col nzFlex="auto">
-        <p><i nz-icon nzType="calendar" nzTheme="outline"></i> {{this.meal.startDate}} - {{this.meal.endDate}}</p>
+        <p><i nz-icon nzType="calendar" nzTheme="outline"></i> {{this.meal.start}} - {{this.meal.end}}</p>
         <p><i nz-icon nzType="user" nzTheme="outline"></i> {{this.meal.createdBy.firstname + ' ' + this.meal.createdBy.lastname}}</p>
         <p>{{this.meal.description}}</p>
       </div>
@@ -34,23 +30,18 @@
       </div>
     </div>
       <div nz-row [nzGutter]="8">
-        <div nz-col [nzSpan]="8">
-          <nz-card nzTitle="Card title">
-            <p>Card content</p>
-          </nz-card>
+        <div *ngIf="meal.suggestions.length == 0" nz-col>
+          <p>Add suggestions for this diner!</p>
         </div>
-        <div nz-col [nzSpan]="8">
-          <nz-card  nzTitle="Card title">
-            <p>Card content</p>
-          </nz-card>
-        </div>
-        <div nz-col [nzSpan]="8">
-          <nz-card nzTitle="Card title">
-            <p>Card content</p>
+        <div nz-col [nzSpan]="8" class="suggestion" *ngFor="let suggestion of meal.suggestions">
+          <nz-card nzTitle="{{suggestion?.title}} - {{suggestion.suggester?.firstname}} {{suggestion.suggester?.lastname}}">
+            <p *ngIf="suggestion.dish != null">Selected Dish: {{suggestion.dish.name}}</p>
+            <p>{{suggestion?.description}}</p>
           </nz-card>
         </div>
       </div>
-    <nz-row>
+
+    <nz-row class="button-row">
       <nz-col [nzSpan]="12">
         <button nz-button (click)="onNewSuggestion()" nzType="primary"><i nz-icon nzType="plus"></i>New Suggestion</button>
       </nz-col>
@@ -76,7 +67,18 @@
       <tr *ngFor="let user of headerTable.data">
         <td><nz-avatar nzIcon="user"></nz-avatar>{{user['firstname']}} {{user['lastname']}}</td>
         <td>{{user['email']}}</td>
-        <td>Going</td>
+        <td *ngIf="user['email'] == loggedInUserEmail">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-select class="status" nzPlaceHolder="Availability" [ngModel]="status" (ngModelChange)="onSetAvailability($event)">
+                <nz-option nzCustomContent nzLabel="Going" nzValue="Going"><i nz-icon nzType="check-circle"></i> Going</nz-option>
+                <nz-option nzCustomContent nzLabel="Maybe" nzValue="Maybe"><i nz-icon nzType="question-circle"></i> Maybe</nz-option>
+                <nz-option nzCustomContent nzLabel="Not Going" nzValue="Not Going"><i nz-icon nzType="close-circle"></i> Not Going </nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td *ngIf="user['email'] != loggedInUserEmail">status nog ophalen</td>
       </tr>
       </tbody>
     </nz-table>
