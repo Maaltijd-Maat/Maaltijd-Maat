@@ -11,7 +11,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMeal } from '@models:/meal.model';
 import { MealService } from '@services/meal/meal.service';
-import { CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarEventTitleFormatter, CalendarView } from 'angular-calendar';
 import { MealSharedService } from '../../meal.shared.service';
 import { differenceInMinutes, startOfDay, startOfHour } from 'date-fns';
 import { CustomEventTitleFormatter } from './event.provider';
@@ -71,6 +71,11 @@ export class MealsComponent implements AfterViewInit {
   viewChanged() {
     this.cdr.detectChanges();
     this.scrollToCurrentView();
+  }
+
+  navigateTo({ event }: { event: CalendarEvent<IMeal> }) {
+
+    this.router.navigate([event.id], { relativeTo: this.route });
   }
 
   private scrollToCurrentView() {

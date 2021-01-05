@@ -11,43 +11,48 @@
 </nz-page-header>
 
 <nz-card>
-  <nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24 }" class="toolbar">
-    <div nz-col nzFlex="auto">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle') : locale }}</h3>
-    </div>
-    <div nz-col>
-      <nz-button-group>
-        <button nz-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
-          <em nz-icon nzType="left"></em>Previous
-        </button>
-        <button nz-button mwlCalendarToday [(viewDate)]="viewDate">Today</button>
-        <button nz-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
-          Next<em nz-icon nzType="right"></em>
-        </button>
-      </nz-button-group>
-    </div>
-    <div nz-col>
-      <nz-radio-group [(ngModel)]="view">
-        <label nz-radio-button [nzValue]="CalendarView.Month">Month</label>
-        <label nz-radio-button [nzValue]="CalendarView.Week">Week</label>
-      </nz-radio-group>
-    </div>
-  </nz-row>
+  <div class="card">
+    <nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24 }" class="toolbar">
+      <div nz-col nzFlex="auto">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle') : locale }}</h3>
+      </div>
+      <div nz-col>
+        <nz-button-group>
+          <button nz-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+            <em nz-icon nzType="left"></em>Previous
+          </button>
+          <button nz-button mwlCalendarToday [(viewDate)]="viewDate">Today</button>
+          <button nz-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+            Next<em nz-icon nzType="right"></em>
+          </button>
+        </nz-button-group>
+      </div>
+      <div nz-col>
+        <nz-radio-group [(ngModel)]="view">
+          <label nz-radio-button [nzValue]="CalendarView.Month">Month</label>
+          <label nz-radio-button [nzValue]="CalendarView.Week">Week</label>
+        </nz-radio-group>
+      </div>
+    </nz-row>
 
 
-  <div class="card-inner">
-    <div [ngSwitch]="view" class="scroll-container" #scrollContainer>
-      <mwl-calendar-month-view
-        *ngSwitchCase="CalendarView.Month"
-        [events]="meals"
-        [viewDate]="viewDate">
-      </mwl-calendar-month-view>
-      <mwl-calendar-week-view
-        *ngSwitchCase="CalendarView.Week"
-        [viewDate]="viewDate"
-        [events]="meals"
-      >
-      </mwl-calendar-week-view>
+    <div class="card-inner">
+      <div [ngSwitch]="view" class="scroll-container" #scrollContainer>
+        <mwl-calendar-month-view
+          *ngSwitchCase="CalendarView.Month"
+          [events]="meals"
+          [viewDate]="viewDate"
+          (eventClicked)="navigateTo($event)"
+        >
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view
+          *ngSwitchCase="CalendarView.Week"
+          [viewDate]="viewDate"
+          [events]="meals"
+          (eventClicked)="navigateTo($event)">
+        >
+        </mwl-calendar-week-view>
+      </div>
     </div>
   </div>
 </nz-card>
