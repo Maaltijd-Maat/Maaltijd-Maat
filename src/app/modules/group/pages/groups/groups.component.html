@@ -14,7 +14,10 @@
     <div nz-menu nzMode="inline">
       <ul class="list">
         <li *ngFor="let group of groups" nz-menu-item nzMatchRouter>
-          <a [routerLink]="['group', group['id']]">{{group.name}}</a>
+          <a [routerLink]="['group', group['id']]">
+            <nz-badge [nzColor]="group.color"></nz-badge>
+            {{group.name}}
+          </a>
         </li>
       </ul>
     </div>

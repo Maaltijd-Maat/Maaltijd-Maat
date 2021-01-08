@@ -1,0 +1,46 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="closeModal()"
+  nzTitle="New Meal">
+  <form nz-form [nzLayout]="'vertical'" [formGroup]="formGroup">
+    <nz-form-item>
+      <nz-form-label nzFor="title">Title</nz-form-label>
+      <nz-form-control nzErrorTip="Please define a title!">
+        <input nz-input placeholder="Title" formControlName="title"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="group">Group</nz-form-label>
+      <nz-form-control nzErrorTip="Please select a group!">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a group" formControlName="group">
+          <nz-option *ngFor="let group of groups" [nzValue]="group.id" [nzLabel]="group.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="date">Start Date</nz-form-label>
+      <nz-form-control nzErrorTip="Please select a start date!">
+        <nz-range-picker nzFormat="short" formControlName="date" [nzShowTime]="true">
+        </nz-range-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Description</nz-form-label>
+      <nz-form-control>
+        <textarea rows="4" nz-input formControlName="description"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div *nzModalFooter>
+    <button [disabled]="!formGroup.valid"
+            [nzLoading]="isLoading"
+            (click)="createMeal()"
+            nz-button
+            nzType="primary">
+      Create Meal
+    </button>
+  </div>
+</nz-modal>

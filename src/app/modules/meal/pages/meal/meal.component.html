@@ -1,0 +1,89 @@
+<nz-page-header [nzGhost]="false" class="site-page-header" nzBackIcon nzTitle="Meal"
+                nzSubtitle="Suggest dishes for this appointment and look at the suggestions.">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+    <nz-breadcrumb-item><a routerLink="../">Meals</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>Meal</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+<nz-card>
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Information</h4>
+      </div>
+    </div>
+    <div nz-row>
+      <div class="information" nz-col nzFlex="auto">
+        <p><i nz-icon nzType="calendar" nzTheme="outline"></i> {{this.meal.start}} - {{this.meal.end}}</p>
+        <p><i nz-icon nzType="user" nzTheme="outline"></i> {{this.meal.createdBy.firstname + ' ' + this.meal.createdBy.lastname}}</p>
+        <p>{{this.meal.description}}</p>
+      </div>
+    </div>
+  </nz-card>
+  <br>
+
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Suggestions</h4>
+      </div>
+    </div>
+      <div nz-row [nzGutter]="8">
+        <div *ngIf="meal.suggestions.length == 0" nz-col>
+          <p>Add suggestions for this diner!</p>
+        </div>
+        <div nz-col [nzSpan]="8" class="suggestion" *ngFor="let suggestion of meal.suggestions">
+          <nz-card nzTitle="{{suggestion?.title}} - {{suggestion.suggester?.firstname}} {{suggestion.suggester?.lastname}}">
+            <p *ngIf="suggestion.dish != null">Selected Dish: {{suggestion.dish.name}}</p>
+            <p>{{suggestion?.description}}</p>
+          </nz-card>
+        </div>
+      </div>
+
+    <nz-row class="button-row">
+      <nz-col [nzSpan]="12">
+        <button nz-button (click)="onNewSuggestion()" nzType="primary"><i nz-icon nzType="plus"></i>New Suggestion</button>
+      </nz-col>
+    </nz-row>
+  </nz-card>
+  <br>
+
+  <nz-card>
+    <div nz-row>
+      <div nz-col nzFlex="auto">
+        <h4 nz-typography>Members of {{this.meal.group.name}}</h4>
+      </div>
+    </div>
+
+    <nz-table class="invitedTable" #headerTable [nzData]="this.attendees" [nzPageSize]="10" [nzShowPagination]="false">
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>E-mail</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let attendee of headerTable.data">
+        <td><nz-avatar nzIcon="user" [style]="{'background-color': attendee['attendee']!['color']}"></nz-avatar>{{attendee['attendee']!['firstname']}} {{attendee['attendee']!['lastname']}}</td>
+        <td>{{attendee['attendee']!['email']}}</td>
+        <td *ngIf="attendee['attendee']!['email'] == loggedInUserEmail">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-select class="status" nzPlaceHolder="Availability" [ngModel]="attendee['status']" (ngModelChange)="onSetAvailability($event)">
+                <nz-option nzValue="Not given availability yet." nzLabel="Not given availability yet." nzDisabled></nz-option>
+                <nz-option nzCustomContent nzLabel="Going" nzValue="Going"><i nz-icon nzType="check-circle"></i> Going</nz-option>
+                <nz-option nzCustomContent nzLabel="Maybe" nzValue="Maybe"><i nz-icon nzType="question-circle"></i> Maybe</nz-option>
+                <nz-option nzCustomContent nzLabel="Not Going" nzValue="Not Going"><i nz-icon nzType="close-circle"></i> Not Going </nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </td>
+        <td *ngIf="attendee['attendee']!['email'] != loggedInUserEmail">{{attendee.status}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+  <app-new-suggestion [(isVisible)]="isNewSuggestionModalVisible"></app-new-suggestion>
+</nz-card>
