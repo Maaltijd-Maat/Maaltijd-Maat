@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {NzMessageService} from 'ng-zorro-antd/message';
 import {IMeal} from '@models:/meal.model';
@@ -6,10 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import decode from 'jwt-decode';
 import {AuthenticateService} from '@services/authenticate/authenticate.service';
 import {MealService} from '@services/meal/meal.service';
-import {IUser, User} from '@models:/user';
-import {Attendee, IAttendee} from '@models:/Attendee';
-import {UserService} from '@services/user/user.service';
-
+import {IAttendee} from '@models:/Attendee';
 
 @Component({
   selector: 'app-meal',
@@ -22,13 +19,13 @@ export class MealComponent {
   meal!: IMeal;
   loggedInUserEmail: string;
   status!: any;
+  attendees!: IAttendee[];
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private message: NzMessageService,
               private authenticateService: AuthenticateService,
-              private mealService: MealService,
-              private userService: UserService
+              private mealService: MealService
   ) {
     const payload: any = decode(authenticateService.getToken());
     this.loggedInUserEmail = payload.sub;
@@ -45,27 +42,25 @@ export class MealComponent {
         weekday: 'short', hour: 'numeric', minute: 'numeric'
       }).format(new Date(data.meal.end));
       this.meal = data.meal;
+      this.attendees = data.attendee;
     });
   }
 
   public onSetAvailability($event: string): void{
+    //Convert string to date object
     this.meal.start = new Date(this.meal.start);
     this.meal.end = new Date(this.meal.end);
-    let attendee: IAttendee = new Attendee($event, this.meal);
-    this.mealService.setAttendee(attendee).subscribe((attendee: IAttendee) => {
-      if (this.meal.attendees == null) this.meal.attendees = [];
-      this.meal.attendees.push(attendee);
+    const attendee = {
+      status: $event,
+      meal: this.meal
+    };
 
-      this.mealService.updateMeal(this.meal).subscribe((meal: IMeal) => {
-        this.message.create('Success', 'Successfully');
-      }, error => {
-        console.log(error);
-      });
+    //Update or add new attendee.
+    this.mealService.createOrUpdateAttendee(attendee).subscribe(() => {
+      this.message.create('Success', 'Successfully');
     }, error => {
-      console.log(error);
+      this.message.create('error', `Something went wrong while changing availability: ${error.error}!`);
     });
-
-
   }
 
   public onNewSuggestion(): void {

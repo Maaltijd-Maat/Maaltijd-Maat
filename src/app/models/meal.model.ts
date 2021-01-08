@@ -1,6 +1,5 @@
 import { IGroup } from '@models:/Group';
 import { ISuggestion } from '@models:/suggestion';
-import {IAttendee} from '@models:/Attendee';
 import { IUser } from '@models:/user';
 import { EventColor } from 'calendar-utils';
 
@@ -14,7 +13,6 @@ export interface IMeal {
   readonly group: IGroup;
   readonly createdBy: IUser;
   suggestions: ISuggestion[];
-  attendees: IAttendee[];
 }
 
 export interface ICreateMeal {

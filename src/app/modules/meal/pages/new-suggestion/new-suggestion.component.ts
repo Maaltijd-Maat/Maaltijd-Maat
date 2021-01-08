@@ -5,7 +5,6 @@ import {DishService} from "@services/dish/dish.service";
 import {MealService} from "@services/meal/meal.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {ISuggestion} from "@models:/suggestion";
-import {User} from "@models:/user";
 import {ActivatedRoute} from "@angular/router";
 import {IMeal} from "@models:/meal.model";
 
@@ -17,12 +16,9 @@ import {IMeal} from "@models:/meal.model";
 export class NewSuggestionComponent implements OnInit{
   @Input() isVisible: boolean = false;
   @Output() isVisibleChange = new EventEmitter<boolean>();
-
   isLoading: boolean = false;
   formGroup!: FormGroup;
-
   dishes: IDish[] = [];
-
   meal!: IMeal;
 
   constructor(private fb: FormBuilder,
@@ -81,14 +77,14 @@ export class NewSuggestionComponent implements OnInit{
         //Update meal with the new suggestion
         this.mealService.updateMeal(this.meal).subscribe((meal: IMeal) => {
           this.message.create('Success', 'Successfully created a new suggestion for this meal!');
-          this.isLoading = false;
           this.closeModal();
         }, error => {
-          this.isLoading = false;
+          this.message.create('error', `Something went wrong while updating the meal with the suggestion: ${error.error}!`);
         });
       }, error => {
+        this.message.create('error', `Something went wrong while creating a suggestion: ${error.error}!`);
+      }, () => {
         this.isLoading = false;
-        // TODO: Add convenient way to present errors at the frontend.
       });
     }
   }

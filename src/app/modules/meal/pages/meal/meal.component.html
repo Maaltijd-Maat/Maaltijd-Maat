@@ -6,8 +6,7 @@
     <nz-breadcrumb-item>Meal</nz-breadcrumb-item>
   </nz-breadcrumb>
 </nz-page-header>
-
-<div class="content">
+<nz-card>
   <nz-card>
     <div nz-row>
       <div nz-col nzFlex="auto">
@@ -22,6 +21,7 @@
       </div>
     </div>
   </nz-card>
+  <br>
 
   <nz-card>
     <div nz-row>
@@ -47,6 +47,7 @@
       </nz-col>
     </nz-row>
   </nz-card>
+  <br>
 
   <nz-card>
     <div nz-row>
@@ -55,7 +56,7 @@
       </div>
     </div>
 
-    <nz-table class="invitedTable" #headerTable [nzData]="this.meal.group.members!" [nzPageSize]="10" [nzShowPagination]="false">
+    <nz-table class="invitedTable" #headerTable [nzData]="this.attendees" [nzPageSize]="10" [nzShowPagination]="false">
       <thead>
       <tr>
         <th>User</th>
@@ -64,13 +65,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of headerTable.data">
-        <td><nz-avatar nzIcon="user"></nz-avatar>{{user['firstname']}} {{user['lastname']}}</td>
-        <td>{{user['email']}}</td>
-        <td *ngIf="user['email'] == loggedInUserEmail">
+      <tr *ngFor="let attendee of headerTable.data">
+        <td><nz-avatar nzIcon="user" [style]="{'background-color': attendee['attendee']!['color']}"></nz-avatar>{{attendee['attendee']!['firstname']}} {{attendee['attendee']!['lastname']}}</td>
+        <td>{{attendee['attendee']!['email']}}</td>
+        <td *ngIf="attendee['attendee']!['email'] == loggedInUserEmail">
           <nz-form-item>
             <nz-form-control>
-              <nz-select class="status" nzPlaceHolder="Availability" [ngModel]="status" (ngModelChange)="onSetAvailability($event)">
+              <nz-select class="status" nzPlaceHolder="Availability" [ngModel]="attendee['status']" (ngModelChange)="onSetAvailability($event)">
+                <nz-option nzValue="Not given availability yet." nzLabel="Not given availability yet." nzDisabled></nz-option>
                 <nz-option nzCustomContent nzLabel="Going" nzValue="Going"><i nz-icon nzType="check-circle"></i> Going</nz-option>
                 <nz-option nzCustomContent nzLabel="Maybe" nzValue="Maybe"><i nz-icon nzType="question-circle"></i> Maybe</nz-option>
                 <nz-option nzCustomContent nzLabel="Not Going" nzValue="Not Going"><i nz-icon nzType="close-circle"></i> Not Going </nz-option>
@@ -78,10 +80,10 @@
             </nz-form-control>
           </nz-form-item>
         </td>
-        <td *ngIf="user['email'] != loggedInUserEmail">status nog ophalen</td>
+        <td *ngIf="attendee['attendee']!['email'] != loggedInUserEmail">{{attendee.status}}</td>
       </tr>
       </tbody>
     </nz-table>
   </nz-card>
   <app-new-suggestion [(isVisible)]="isNewSuggestionModalVisible"></app-new-suggestion>
-</div>
+</nz-card>
