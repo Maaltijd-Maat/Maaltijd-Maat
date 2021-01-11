@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
+import {
+  NzAvatarModule, NzBadgeModule, NzBreadCrumbModule,
+  NzButtonModule, NzCardModule, NzEmptyModule,
+  NzFormModule,
+  NzInputModule, NzModalModule, NzPageHeaderModule,
+  NzPopconfirmModule, NzResultModule,
+  NzTableModule,
+  NzTypographyModule
+} from 'ng-zorro-antd';
 import { IconsProviderModule } from '../../icons-provider.module';
 
 import { GroupRoutingModule } from './group-routing.module';
@@ -24,10 +32,23 @@ import { GroupDetailsComponent } from './pages/group-details/group-details.compo
   exports: [],
   imports: [
     CommonModule,
-    NgZorroAntdModule,
     IconsProviderModule,
     ReactiveFormsModule,
-    GroupRoutingModule
+    GroupRoutingModule,
+    NzTypographyModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzPopconfirmModule,
+    NzTableModule,
+    NzAvatarModule,
+    NzPageHeaderModule,
+    NzBreadCrumbModule,
+    NzCardModule,
+    NzBadgeModule,
+    NzEmptyModule,
+    NzResultModule,
+    NzModalModule
   ],
   providers: [SharedGroupService]
 })
