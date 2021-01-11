@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticateService } from '@services/authenticate/authenticate.service';
-import { Credentials } from '@models:/credentials';
+import { CredentialsModel } from '@models:/credentials.model';
 
 @Component({
   selector: 'app-login-component',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     }
 
     if (this.loginForm.valid){
-      const credentials = new Credentials(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
+      const credentials = new CredentialsModel(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
       if (this.loginForm.controls['remember'].value) {
         //TODO remember credentials by session or localstorage...
       }

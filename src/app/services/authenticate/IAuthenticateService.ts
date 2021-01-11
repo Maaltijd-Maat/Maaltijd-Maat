@@ -1,4 +1,4 @@
-import { ICredentials } from '@models:/credentials';
+import { ICredentials } from '@models:/credentials.model';
 
 export interface IAuthenticateService {
   /**

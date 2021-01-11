@@ -1,4 +1,4 @@
-import { IInvite } from '@models:/invite';
+import { IInvite } from '@models:/invite.model';
 import { IInviteService } from '@services/invite/IInviteService';
 
 import { Injectable } from '@angular/core';

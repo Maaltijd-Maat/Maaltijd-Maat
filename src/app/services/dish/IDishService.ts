@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IDish } from '@models:/dish';
+import { IDish } from '@models:/dish.model';
 
 export interface IDishService {
 
@@ -18,7 +18,7 @@ export interface IDishService {
   /**
    * Upload new dish.
    *
-   * @param dish - Dish that needs to be uploaded
+   * @param dish - DishModel that needs to be uploaded
    */
   postDish(dish: IDish): Observable<object>;
 

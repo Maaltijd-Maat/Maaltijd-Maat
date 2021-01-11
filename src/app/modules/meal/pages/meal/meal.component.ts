@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import decode from 'jwt-decode';
 import {AuthenticateService} from '@services/authenticate/authenticate.service';
 import {MealService} from '@services/meal/meal.service';
-import {IAttendee} from '@models:/Attendee';
+import {IAttendee} from '@models:/attendee.model';
 
 @Component({
   selector: 'app-meal',

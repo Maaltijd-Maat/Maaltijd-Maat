@@ -1,7 +1,7 @@
-import { IUser } from '@models:/user';
-import {Credentials, ICredentials} from '@models:/credentials';
+import { IUser } from '@models:/user.model';
+import {CredentialsModel, ICredentials} from '@models:/credentials.model';
 import {Observable} from 'rxjs';
-import {IDish} from '@models:/dish';
+import {IDish} from '@models:/dish.model';
 
 export interface IUserService {
 
@@ -24,7 +24,7 @@ export interface IUserService {
    *
    * @param credentials token and new password.
    */
-  changePasswordWithPasswordToken(credentials: Credentials): void
+  changePasswordWithPasswordToken(credentials: CredentialsModel): void
 
   /**
    * Request password reset token from backend.

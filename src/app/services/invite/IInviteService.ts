@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { IInvite } from '@models:/invite';
+import { IInvite } from '@models:/invite.model';
 
 export interface IInviteService {
   createInvite(groupId: string, inviteeMail: string): Observable<IInvite>;

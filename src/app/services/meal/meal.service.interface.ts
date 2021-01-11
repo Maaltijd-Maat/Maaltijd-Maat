@@ -1,7 +1,7 @@
 import { IMeal, ICreateMeal } from '@models:/meal.model';
 import { Observable } from 'rxjs';
-import {ISuggestion} from "@models:/suggestion";
-import {IAttendee} from '@models:/Attendee';
+import {ISuggestion} from "@models:/suggestion.model";
+import {IAttendee} from '@models:/attendee.model';
 
 export interface IMealService {
   /**

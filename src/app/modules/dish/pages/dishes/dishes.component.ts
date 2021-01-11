@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IDish } from '@models:/dish';
+import { IDish } from '@models:/dish.model';
 import { DishService } from '@services/dish/dish.service';
 
 @Component({

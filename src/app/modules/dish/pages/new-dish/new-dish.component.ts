@@ -3,7 +3,7 @@ import { Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { IDish } from '@models:/dish';
+import { IDish } from '@models:/dish.model';
 import { DishService } from '@services/dish/dish.service';
 
 @Component({
@@ -34,8 +34,6 @@ export class NewDishComponent implements OnInit {
     if (this.formGroup.valid) {
       const dish: IDish = {
         name: this.formGroup.controls['name'].value,
-        ingredients: [],
-        instructions: [],
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value
       };
 

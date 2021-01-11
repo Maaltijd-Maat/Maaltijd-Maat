@@ -3,7 +3,7 @@ export interface ICredentials {
   password: string;
 }
 
-export class Credentials implements ICredentials{
+export class CredentialsModel implements ICredentials{
   email: string;
   password: string;
 

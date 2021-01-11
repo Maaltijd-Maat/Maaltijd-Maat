@@ -1,6 +1,6 @@
-import { IGroup } from '@models:/Group';
-import { ISuggestion } from '@models:/suggestion';
-import { IUser } from '@models:/user';
+import { IGroup } from '@models:/group.model';
+import { ISuggestion } from '@models:/suggestion.model';
+import { IUser } from '@models:/user.model';
 import { EventColor } from 'calendar-utils';
 
 export interface IMeal {

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 
 import { DishService } from '@services/dish/dish.service';
-import { IDish } from '@models:/dish';
+import { IDish } from '@models:/dish.model';
 
 @Injectable({
   providedIn: 'root'

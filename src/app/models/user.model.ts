@@ -12,7 +12,7 @@ export interface IUser {
   diets: string[];
 }
 
-export class User implements IUser{
+export class UserModel implements IUser{
   readonly id?: string;
   firstname: string;
   lastname: string;

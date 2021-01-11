@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '@services/user/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Credentials} from '@models:/credentials';
+import {CredentialsModel} from '@models:/credentials.model';
 
 @Component({
   selector: 'app-change-password',
@@ -46,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     if (this.changeForm.valid && this.token != null){
-      const credentials = new Credentials(this.token, this.changeForm.controls['password'].value);
+      const credentials = new CredentialsModel(this.token, this.changeForm.controls['password'].value);
       this.userService.changePasswordWithPasswordToken(credentials).then(
         (res) => {
           this.alertMessage = 'success';

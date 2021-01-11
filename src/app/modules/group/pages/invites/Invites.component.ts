@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IInvite } from '@models:/invite';
+import { IInvite } from '@models:/invite.model';
 import { InviteService } from '@services/invite/invite.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
