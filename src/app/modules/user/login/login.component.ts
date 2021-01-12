@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       const credentials = new CredentialsModel(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
       this.authenticateService.authenticateUser(credentials).then(
         (res) => {
-          this.router.navigate(['']);
+          this.router.navigate(['/']);
         },
         (err) => {
           this.alertMessage = 'error';
