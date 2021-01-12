@@ -33,17 +33,9 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.valid){
       const credentials = new CredentialsModel(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
-      if (this.loginForm.controls['remember'].value) {
-        //TODO remember credentials by session or localstorage...
-      }
       this.authenticateService.authenticateUser(credentials).then(
         (res) => {
-          this.alertMessage = 'success';
-          this.router.navigate(['dishes']);
-          this.isLoading = false;
-          setTimeout(() => {
-            this.alertMessage = "";
-          }, 10000);
+          this.router.navigate(['']);
         },
         (err) => {
           this.alertMessage = 'error';
@@ -54,6 +46,5 @@ export class LoginComponent implements OnInit {
         }
       );
     }
-    this.isLoading = false;
   }
 }

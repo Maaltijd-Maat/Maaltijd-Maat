@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import decode from 'jwt-decode';
-import {AuthenticateService} from '@services/authenticate/authenticate.service';
+import { AuthenticateService } from '@services/authenticate/authenticate.service';
 
 @Component({
-  selector: 'app-menu-component',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: 'app-menu-template',
+  templateUrl: './menu.template.html',
+  styleUrls: ['./menu.template.scss']
 })
-export class MenuComponent {
+export class MenuTemplate {
   isCollapsed = false;
   username: string;
 
@@ -21,13 +21,8 @@ export class MenuComponent {
     this.router.navigate(['/profile']);
   }
 
-  help() {
-    //TODO go to help page with instructions how to use the app.
-    //this.router.navigate(['/help']);
-  }
-
   logout() {
     window.localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
   }
 }

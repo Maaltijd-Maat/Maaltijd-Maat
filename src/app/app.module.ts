@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AuthenticateInterceptor } from '@services/authenticate/authenticate.interceptor';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +17,8 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import nl from '@angular/common/locales/nl';
-import { MenuComponent } from './views/menu/menu.component';
+import { LoginTemplate } from './templates/login/login.template';
+import { MenuTemplate } from './templates/menu/menu.template';
 import {JwtModule} from '@auth0/angular-jwt';
 
 registerLocaleData(nl);
@@ -28,7 +30,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    LoginTemplate,
+    MenuTemplate
   ],
   imports: [
     CommonModule,
@@ -46,7 +49,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter
       }
     }),
-    NzDropDownModule
+    NzDropDownModule,
+    NzCardModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticateInterceptor, multi: true }

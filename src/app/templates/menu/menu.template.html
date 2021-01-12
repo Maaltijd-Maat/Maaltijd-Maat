@@ -6,8 +6,8 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-        <img src="./assets/hamburger-solid.svg" alt="logo"/>
-        <h1>Maaltijd Maat</h1>
+      <img src="./assets/hamburger-solid.svg" alt="logo"/>
+      <h1>Maaltijd Maat</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Meals" nzIcon="calendar">
@@ -48,20 +48,20 @@
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
             ></i>
         </span>
-          <a nz-dropdown class="profile-dropdown" [nzDropdownMenu]="menu">
-            <i nz-icon nzType="user" nzTheme="outline"></i>
-            {{username}}
-            <i nz-icon nzType="down"></i>
-          </a>
-          <nz-dropdown-menu #menu="nzDropdownMenu">
-            <ul nz-menu nzSelectable>
-              <li (click)="profile()" nz-menu-item>Your profile</li>
-              <li (click)="logout()" nz-menu-item>Logout</li>
-            </ul>
-          </nz-dropdown-menu>
+        <a nz-dropdown class="profile-dropdown" [nzDropdownMenu]="menu">
+          <i nz-icon nzType="user" nzTheme="outline"></i>
+          {{username}}
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li (click)="profile()" nz-menu-item>Your profile</li>
+            <li (click)="logout()" nz-menu-item>Logout</li>
+          </ul>
+        </nz-dropdown-menu>
       </div>
     </nz-header>
-     <nz-layout>
+    <nz-layout>
       <nz-content>
         <div>
           <router-outlet></router-outlet>

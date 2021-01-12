@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 import { IconsProviderModule } from '../../../icons-provider.module';
 
@@ -27,7 +28,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     NzAlertModule,
     NzInputModule,
     NzCheckboxModule,
-    NzButtonModule
+    NzButtonModule,
+    NzCardModule
   ],
   providers: []
 })
