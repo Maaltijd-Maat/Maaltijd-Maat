@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {IUser, User} from '@models:/user';
+import {IUser, UserModel} from '@models:/user.model';
 import {UserService} from '@services/user/user.service';
 
 @Component({
@@ -77,7 +77,7 @@ export class DietsComponent implements OnInit {
       diets.push(this.dietsForm.controls[i].value)
     }
 
-    const user = new User(
+    const user = new UserModel(
       '',
       '',
       '',

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '@services/user/user.service';
-import {Credentials} from '@models:/credentials';
+import {CredentialsModel} from '@models:/credentials.model';
 
 @Component({
   selector: 'app-email-request',
@@ -30,7 +30,7 @@ export class EmailRequestComponent implements OnInit {
 
     if (this.forgotForm.valid){
       let email = this.forgotForm.controls['email'].value;
-      const credentials = new Credentials(email, '')
+      const credentials = new CredentialsModel(email, '')
       this.userService.resetPassword(credentials).then(
         (res) => {
           this.alertMessage = 'success';

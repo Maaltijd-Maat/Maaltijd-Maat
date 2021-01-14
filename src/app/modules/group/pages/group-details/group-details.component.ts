@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { InviteService } from '@services/invite/invite.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { IGroup } from '@models:/Group';
+import { IGroup } from '@models:/group.model';
 import { GroupService } from '@services/group/group.service';
 import { SharedGroupService } from '../../shared-group.service';
 

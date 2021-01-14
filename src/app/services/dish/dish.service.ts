@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDish } from '@models:/dish';
+import { IDish } from '@models:/dish.model';
 import { IDishService } from '@services/dish/IDishService';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 

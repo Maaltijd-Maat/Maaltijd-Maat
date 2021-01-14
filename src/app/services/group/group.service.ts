@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { IGroup } from '@models:/Group';
+import { IGroup } from '@models:/group.model';
 import { IGroupService } from '@services/group/IGroupService';
 
 @Injectable({

@@ -3,7 +3,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IAuthenticateService } from '@services/authenticate/IAuthenticateService';
-import { ICredentials } from '@models:/credentials';
+import { ICredentials } from '@models:/credentials.model';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {CanActivate, Router} from '@angular/router';

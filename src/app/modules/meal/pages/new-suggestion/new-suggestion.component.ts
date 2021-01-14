@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Dish, IDish} from "@models:/dish";
+import {DishModel, IDish} from "@models:/dish.model";
 import {DishService} from "@services/dish/dish.service";
 import {MealService} from "@services/meal/meal.service";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {ISuggestion} from "@models:/suggestion";
+import {ISuggestion} from "@models:/suggestion.model";
 import {ActivatedRoute} from "@angular/router";
 import {IMeal} from "@models:/meal.model";
 
@@ -58,7 +58,7 @@ export class NewSuggestionComponent implements OnInit{
       //Creating suggestion object
       const suggestion: ISuggestion = {
         title: this.formGroup.controls['title'].value,
-        dish: new Dish(this.formGroup.controls['dish'].value, 0, [], [], ""),
+        dish: new DishModel(this.formGroup.controls['dish'].value, "", 0),
         suggester: undefined,
         description: this.formGroup.controls['description'].value
       };

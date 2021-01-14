@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IInvite } from '@models:/invite';
+import { IInvite } from '@models:/invite.model';
 import { InviteService } from '@services/invite/invite.service';
 
 @Injectable({

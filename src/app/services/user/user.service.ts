@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 
-import { IUser } from '@models:/user';
-import {Credentials, ICredentials} from '@models:/credentials';
+import { IUser } from '@models:/user.model';
+import {CredentialsModel, ICredentials} from '@models:/credentials.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class UserService implements IUserService {
    * Endpoint to change the password with password token
    * @param credentials that exists of the password token and the new password.
    */
-  changePasswordWithPasswordToken(credentials: Credentials) {
+  changePasswordWithPasswordToken(credentials: CredentialsModel) {
     return new Promise((resolve, reject) => {
       this.http
         .post(this.url + "/change-password", credentials, this.httpOptions)

@@ -1,5 +1,5 @@
-import { IGroup } from '@models:/Group';
-import { IUser } from '@models:/user';
+import { IGroup } from '@models:/group.model';
+import { IUser } from '@models:/user.model';
 
 export interface IInvite {
   readonly id: string;

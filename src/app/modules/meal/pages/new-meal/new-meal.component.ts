@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IGroup } from '@models:/Group';
+import { IGroup } from '@models:/group.model';
 import { IMeal, ICreateMeal } from '@models:/meal.model';
 import { GroupService } from '@services/group/group.service';
 import { MealService } from '@services/meal/meal.service';

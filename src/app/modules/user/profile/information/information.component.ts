@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {IUser, User} from '@models:/user';
+import {IUser, UserModel} from '@models:/user.model';
 import {UserService} from '@services/user/user.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class InformationComponent implements OnInit {
       this.informationForm.controls[i].updateValueAndValidity();
     }
     if (this.informationForm.valid){
-      const user = new User(
+      const user = new UserModel(
         this.informationForm.controls['firstname'].value,
         this.informationForm.controls['lastname'].value,
         this.informationForm.controls['primaryEmail'].value,

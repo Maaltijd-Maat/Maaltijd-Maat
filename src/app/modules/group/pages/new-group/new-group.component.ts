@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IGroup } from '@models:/Group';
+import { IGroup } from '@models:/group.model';
 import { GroupService } from '@services/group/group.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { SharedGroupService } from '../../shared-group.service';

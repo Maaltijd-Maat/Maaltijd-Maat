@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+
+import { IDish } from '@models:/dish.model';
+import { DishService } from '@services/dish/dish.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
-import { IDish } from '@models:/dish';
-import { DishService } from '@services/dish/dish.service';
 
 @Component({
   selector: 'app-edit-dish',
@@ -43,8 +44,6 @@ export class EditDishComponent {
     if (this.formGroup.valid) {
       const dish: IDish = {
         name: this.formGroup.controls['name'].value,
-        ingredients: [],
-        instructions: [],
         amountOfPeople: this.formGroup.controls['amountOfPeople'].value
       };
 

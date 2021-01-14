@@ -1,6 +1,4 @@
-<br>
-<div class="ant-col ant-col-12 ant-col-offset-6">
-<form nz-form [nzLayout]="'horizontal'" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
   <div class="form-head">
     <h1 nz-typography>Register</h1>
     <p>Register today!</p>
@@ -50,10 +48,13 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-control [nzSpan]="12" [nzPush]="7">
+      <button [disabled]="!registerForm.valid" nz-button nzType="primary" class="register-form-button">Register</button>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-control [nzOffset]="7">
-      <button [disabled]="!registerForm.valid" nz-button nzType="primary">Register</button>
-      <span> Already have an account? <a routerLink="/login">Click here for login.</a></span>
+      <span style="text-align: center"> Already have an account?<br><a routerLink="/login">Click here for login.</a></span>
     </nz-form-control>
   </nz-form-item>
 </form>
-</div>

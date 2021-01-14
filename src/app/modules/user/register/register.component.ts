@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '@models:/user';
+import { UserModel } from '@models:/user.model';
 import { UserService } from '@services/user/user.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.registerForm.valid) {
-      const user = new User(
+      const user = new UserModel(
         this.registerForm.controls['firstname'].value,
         this.registerForm.controls['lastname'].value,
         this.registerForm.controls['email'].value,

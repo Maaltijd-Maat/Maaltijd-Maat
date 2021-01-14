@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IGroup } from '@models:/Group';
+import { IGroup } from '@models:/group.model';
 import { GroupService } from '@services/group/group.service';
 import { SharedGroupService } from '../../shared-group.service';
 

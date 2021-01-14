@@ -5,8 +5,8 @@ import { IMealService } from '@services/meal/meal.service.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { ISuggestion } from "@models:/suggestion";
-import { IAttendee } from '@models:/Attendee';
+import { ISuggestion } from "@models:/suggestion.model";
+import { IAttendee } from '@models:/attendee.model';
 
 @Injectable({
   providedIn: 'root'
