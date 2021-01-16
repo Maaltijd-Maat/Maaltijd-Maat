@@ -29,6 +29,5 @@ We use [semantic versioning](https://semver.org) for versioning. For available v
 -   [Angular v10.1.1](https://angular.io)
 
 ## 5. Authors
--   Job Jongebloet (500760495): [job.jongebloet@hva.nl](mailto:job.jongebloet@hva.nl)
 -   René Kok (500776114): [rene.kok@hva.nl](mailto:rene.kok@hva.nl)
 -   Wouter Verdegaal (500778777): [wouter.verdegaal@hva.nl](mailto:wouter.verdegaal@hva.nl)
